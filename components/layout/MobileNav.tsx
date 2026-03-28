@@ -1,21 +1,16 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
-import { stegaClean } from '@sanity/client/stega'
-import type { NavLink, MegaMenuGroup } from '@/types'
 
 interface MobileNavProps {
   isOpen: boolean
   onClose: () => void
-  links: NavLink[]
-  megaNavigation?: MegaMenuGroup[]
+  links: Array<{ href: string; label: string; isButton?: boolean }>
   triggerRef: React.RefObject<HTMLButtonElement | null>
-  pathname?: string
 }
 
-export default function MobileNav({ isOpen, onClose, links, megaNavigation, triggerRef, pathname }: MobileNavProps) {
-  const [expandedGroup, setExpandedGroup] = useState<string | null>(null)
+export default function MobileNav({ isOpen, onClose, links, triggerRef }: MobileNavProps) {
   const panelRef = useRef<HTMLDivElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
@@ -56,7 +51,6 @@ export default function MobileNav({ isOpen, onClose, links, megaNavigation, trig
     } else {
       document.body.style.overflow = 'unset'
       triggerRef.current?.focus()
-      setExpandedGroup(null)
     }
 
     return () => {
@@ -66,8 +60,6 @@ export default function MobileNav({ isOpen, onClose, links, megaNavigation, trig
   }, [isOpen, handleKeyDown, triggerRef])
 
   if (!isOpen) return null
-
-  const hasMegaNav = megaNavigation && megaNavigation.length > 0
 
   return (
     <>
@@ -92,7 +84,7 @@ export default function MobileNav({ isOpen, onClose, links, megaNavigation, trig
             ref={closeButtonRef}
             onClick={onClose}
             aria-label="Close menu"
-            className="self-end touch-target flex items-center justify-center mb-4"
+            className="self-end touch-target flex items-center justify-center text-foreground mb-4"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -101,91 +93,29 @@ export default function MobileNav({ isOpen, onClose, links, megaNavigation, trig
 
           <nav role="navigation" aria-label="Mobile navigation">
             <div className="flex flex-col space-y-1">
-              {/* Mega Nav Groups */}
-              {hasMegaNav &&
-                megaNavigation.map((group) => {
-                  const key = group._key
-                  const hasChildren = group.children && group.children.length > 0
-                  const isExpanded = expandedGroup === key
-                  const groupHref = stegaClean(group.href || '')
-
-                  if (!hasChildren) {
-                    return (
-                      <Link
-                        key={key}
-                        href={groupHref || '#'}
-                        className="text-lg font-serif font-semibold text-foreground hover:text-foreground transition-colors py-3 touch-target"
-                        onClick={onClose}
-                      >
-                        {group.label}
-                      </Link>
-                    )
-                  }
-
-                  return (
-                    <div key={key}>
-                      <button
-                        type="button"
-                        className="w-full flex items-center justify-between text-lg font-serif font-semibold text-foreground hover:text-foreground transition-colors py-3 touch-target"
-                        aria-expanded={isExpanded}
-                        onClick={() => setExpandedGroup(isExpanded ? null : key)}
-                      >
-                        {group.label}
-                        <svg
-                          className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-
-                      {isExpanded && (
-                        <div className="flex flex-col space-y-1 pl-4 pb-2">
-                          {groupHref && (
-                            <Link
-                              href={groupHref}
-                              className="text-base text-muted-foreground hover:text-foreground transition-colors py-2 touch-target font-medium"
-                              onClick={onClose}
-                            >
-                              All {group.label}
-                            </Link>
-                          )}
-                          {group.children!.map((child) => (
-                            <Link
-                              key={child._key}
-                              href={stegaClean(child.href)}
-                              className="text-base text-muted-foreground hover:text-foreground transition-colors py-2 touch-target"
-                              onClick={onClose}
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  )
-                })}
-
-              {/* Divider between mega nav and secondary links */}
-              {hasMegaNav && links.length > 0 && (
-                <div className="border-t border-border my-2" />
+              {links.map((link) =>
+                link.isButton ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target={link.href.startsWith('http') ? '_blank' : undefined}
+                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="border border-accent text-accent text-center uppercase tracking-wider py-3 mt-4 touch-target hover:bg-accent hover:text-background transition-colors"
+                    onClick={onClose}
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-lg font-mono uppercase tracking-wider text-foreground py-3 touch-target"
+                    onClick={onClose}
+                  >
+                    {link.label}
+                  </Link>
+                )
               )}
-
-              {/* Secondary / Flat Links */}
-              {links.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={pathname === link.href ? 'page' : undefined}
-                  className="text-base text-foreground hover:text-foreground transition-colors py-3 touch-target"
-                  onClick={onClose}
-                >
-                  {link.label}
-                </Link>
-              ))}
             </div>
           </nav>
         </div>

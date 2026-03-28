@@ -19,7 +19,7 @@ export default async function ContactPage() {
 
   return (
     <>
-      <Header siteSettings={settings} megaNavigation={headerData?.megaNavigation} secondaryNavigation={headerData?.secondaryNavigation} cta={headerData?.cta} />
+      <Header siteSettings={settings} cta={headerData?.cta} />
       <main id="main" className="py-16 sm:py-24">
         <ContactContent settings={settings} />
       </main>

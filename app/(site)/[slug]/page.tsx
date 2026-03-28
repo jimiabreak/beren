@@ -58,7 +58,7 @@ export default async function ModularPage({ params }: PageProps) {
 
   return (
     <>
-      <Header siteSettings={settings} megaNavigation={headerData?.megaNavigation} secondaryNavigation={headerData?.secondaryNavigation} cta={headerData?.cta} />
+      <Header siteSettings={settings} cta={headerData?.cta} />
       <main id="main">
         <SectionRenderer sections={page.sections} />
       </main>
