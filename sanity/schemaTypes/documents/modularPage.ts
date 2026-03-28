@@ -52,7 +52,6 @@ export default defineType({
         defineArrayMember({ type: 'splitContent' }),
         defineArrayMember({ type: 'contactForm' }),
         defineArrayMember({ type: 'embed' }),
-        defineArrayMember({ type: 'blogGrid' }),
       ],
     }),
     defineField({

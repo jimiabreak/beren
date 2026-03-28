@@ -23,7 +23,6 @@ import newsletterSection from './sections/newsletterSection'
 import splitContent from './sections/splitContent'
 import contactForm from './sections/contactForm'
 import embed from './sections/embed'
-import blogGrid from './sections/blogGrid'
 
 // Singleton documents (one of each)
 import siteSettings from './singletons/siteSettings'
@@ -41,9 +40,6 @@ import submission from './documents/submission'
 import modularPage from './documents/modularPage'
 import redirect from './documents/redirect'
 import promoBanner from './documents/promoBanner'
-import category from './documents/category'
-import tag from './documents/tag'
-import blogPost from './documents/blogPost'
 
 export const schemaTypes = [
   // Objects
@@ -70,7 +66,6 @@ export const schemaTypes = [
   splitContent,
   contactForm,
   embed,
-  blogGrid,
   // Singletons
   siteSettings,
   homePage,
@@ -86,7 +81,4 @@ teamMember,
   modularPage,
   redirect,
   promoBanner,
-  category,
-  tag,
-  blogPost,
 ]

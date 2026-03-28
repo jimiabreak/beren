@@ -8,9 +8,6 @@ import {
   BlockContentIcon,
   LinkIcon,
   BellIcon,
-  DocumentTextIcon,
-  TagIcon,
-  TagsIcon,
 } from '@sanity/icons'
 
 export const SINGLETONS = ['siteSettings', 'homePage', 'header', 'footer', 'redirects']
@@ -27,21 +24,6 @@ export const structure = (S: StructureBuilder) =>
       S.divider(),
 
       S.documentTypeListItem('modularPage').title('Pages'),
-
-      S.divider(),
-
-      S.listItem()
-        .title('Blog')
-        .icon(DocumentTextIcon)
-        .child(
-          S.list()
-            .title('Blog')
-            .items([
-              S.documentTypeListItem('blogPost').title('Posts').icon(DocumentTextIcon),
-              S.documentTypeListItem('category').title('Categories').icon(TagIcon),
-              S.documentTypeListItem('tag').title('Tags').icon(TagsIcon),
-            ])
-        ),
 
       S.divider(),
 

@@ -15,9 +15,6 @@ const REVALIDATION_MAP: Record<string, string[]> = {
   redirect: ['redirects'],
   redirects: ['redirects'],
   promoBanner: ['promoBanner'],
-  blogPost: ['blogPosts'],
-  category: ['categories', 'blogPosts'],
-  tag: ['tags', 'blogPosts'],
 }
 
 export async function POST(req: NextRequest) {

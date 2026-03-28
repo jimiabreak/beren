@@ -24,7 +24,6 @@ interface HeaderProps {
 
 const defaultNavLinks = [
   { href: '/about', label: 'About' },
-  { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -120,7 +119,7 @@ export default function Header({ siteSettings, megaNavigation, secondaryNavigati
               />
             ) : (
               <span className="font-serif text-xl sm:text-2xl font-bold">
-                {siteSettings?.name || 'Blog'}
+                {siteSettings?.name || 'Beren'}
               </span>
             )}
           </Link>

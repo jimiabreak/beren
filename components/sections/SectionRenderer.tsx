@@ -15,7 +15,6 @@ import NewsletterSectionBlock from '@/components/sections/NewsletterSectionBlock
 import SplitContent from '@/components/sections/SplitContent'
 import ContactForm from '@/components/sections/ContactForm'
 import Embed from '@/components/sections/Embed'
-import BlogGridSection from '@/components/sections/BlogGridSection'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const sectionComponents: Record<string, React.ComponentType<any>> = {
@@ -35,7 +34,6 @@ const sectionComponents: Record<string, React.ComponentType<any>> = {
   splitContent: SplitContent,
   contactForm: ContactForm,
   embed: Embed,
-  blogGrid: BlogGridSection,
 }
 
 interface SectionRendererProps {

@@ -48,41 +48,6 @@ export function webPageJsonLd(title: string, description?: string, path?: string
   }
 }
 
-export function blogPostJsonLd(post: {
-  title: string
-  excerpt?: string
-  publishedAt: string
-  updatedAt?: string
-  author?: string
-  image?: string
-  slug: string
-}, siteName: string) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    ...(post.excerpt && { description: post.excerpt }),
-    datePublished: post.publishedAt,
-    ...(post.updatedAt && { dateModified: post.updatedAt }),
-    ...(post.author && {
-      author: {
-        '@type': 'Person',
-        name: post.author,
-      },
-    }),
-    ...(post.image && { image: post.image }),
-    publisher: {
-      '@type': 'Organization',
-      name: siteName,
-      url: siteUrl,
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `${siteUrl}/blog/${post.slug}`,
-    },
-  }
-}
-
 export function faqPageJsonLd(items: Array<{ question: string; answer: string }>) {
   return {
     '@context': 'https://schema.org',

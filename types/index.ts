@@ -161,58 +161,6 @@ export interface GalleryImage {
   order?: number
 }
 
-/** Category — matches sanity/schemaTypes/documents/category.ts */
-export interface Category {
-  _id: string
-  _type: 'category'
-  title: string
-  slug: SanitySlug
-  description?: string
-  image?: SanityImage
-  color?: string
-  order?: number
-}
-
-/** Tag — matches sanity/schemaTypes/documents/tag.ts */
-export interface Tag {
-  _id: string
-  _type: 'tag'
-  title: string
-  slug: SanitySlug
-  category?: SanityReference
-}
-
-/** Blog Post — matches sanity/schemaTypes/documents/blogPost.ts */
-export interface BlogPost {
-  _id: string
-  _type: 'blogPost'
-  title: string
-  slug: SanitySlug
-  publishedAt: string
-  excerpt?: string
-  highlightImage?: SanityImage & { alt?: string }
-  author?: string
-  category: Category
-  tags?: Tag[]
-  content?: PortableTextBlock
-  relatedPosts?: BlogPostCard[]
-  isFeatured?: boolean
-  seo?: SEO
-}
-
-/** Blog Post Card — projection subset for listings (slug projected as string) */
-export interface BlogPostCard {
-  _id: string
-  _type: 'blogPost'
-  title: string
-  slug: string
-  publishedAt: string
-  excerpt?: string
-  highlightImage?: SanityImage & { alt?: string }
-  author?: string
-  category: { title: string; slug: string; color?: string }
-}
-
 // =============================================================================
 // Shared Object Types
 // =============================================================================
@@ -376,20 +324,6 @@ export interface ModularEmbed {
   aspectRatio?: '16:9' | '4:3' | '1:1' | '9:16'
 }
 
-/** Blog grid page builder section */
-export interface ModularBlogGrid {
-  _type: 'blogGrid'
-  _key: string
-  heading?: string
-  source?: 'latest' | 'category' | 'manual'
-  category?: Category
-  posts?: BlogPostCard[]
-  limit?: number
-  showViewAll?: boolean
-  viewAllHref?: string
-}
-
-
 /** Union of all modular section types */
 export type ModularPageSection =
   | ModularHero
@@ -408,7 +342,6 @@ export type ModularPageSection =
   | ModularSplitContent
   | ModularContactForm
   | ModularEmbed
-  | ModularBlogGrid
 
 /** Modular Page document */
 export interface ModularPage {

@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { client } from '@/sanity/lib/client'
-import { SITEMAP_QUERY, BLOG_POST_SLUGS_QUERY, CATEGORY_SLUGS_QUERY } from '@/sanity/lib/queries'
+import { SITEMAP_QUERY } from '@/sanity/lib/queries'
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com'
 const sitemapClient = client.withConfig({ stega: false })
@@ -8,7 +8,6 @@ const sitemapClient = client.withConfig({ stega: false })
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
-    { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.9 },
     { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/faq`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
@@ -17,11 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   let dynamicRoutes: MetadataRoute.Sitemap = []
   try {
-    const [pages, posts, categories] = await Promise.all([
-      sitemapClient.fetch(SITEMAP_QUERY),
-      sitemapClient.fetch(BLOG_POST_SLUGS_QUERY),
-      sitemapClient.fetch(CATEGORY_SLUGS_QUERY),
-    ])
+    const pages = await sitemapClient.fetch(SITEMAP_QUERY)
 
     const pageRoutes = (pages || []).map((p: { slug: string; _updatedAt: string }) => ({
       url: `${baseUrl}/${p.slug}`,
@@ -30,21 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }))
 
-    const postRoutes = (posts || []).map((p: { slug: string }) => ({
-      url: `${baseUrl}/blog/${p.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    }))
-
-    const categoryRoutes = (categories || []).map((c: { slug: string }) => ({
-      url: `${baseUrl}/blog/category/${c.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.6,
-    }))
-
-    dynamicRoutes = [...pageRoutes, ...postRoutes, ...categoryRoutes]
+    dynamicRoutes = [...pageRoutes]
   } catch {
     // Silently fail if Sanity is not configured
   }
