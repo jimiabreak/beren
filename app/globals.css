@@ -1,0 +1,78 @@
+@font-face {
+  font-family: 'Shirakaba';
+  src: url('/fonts/Shirakaba-Body.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Shirakaba';
+  src: url('/fonts/Shirakaba-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Shirakaba';
+  src: url('/fonts/Shirakaba-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Shirakaba Mono';
+  src: url('/fonts/Shirakaba-Mono.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'Shirakaba', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Shirakaba', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Shirakaba Mono', ui-monospace, monospace;
+  --color-background: #D5D0CB;
+  --color-foreground: #1A1A1A;
+  --color-muted: #C8C3BE;
+  --color-muted-foreground: #6B6560;
+  --color-border: #B8B3AE;
+}
+
+body {
+  color: var(--color-foreground);
+  background: var(--color-background);
+}
+
+/* Accessibility: minimum touch targets */
+@layer utilities {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid var(--color-foreground);
+  outline-offset: 2px;
+}
+
+/* Hide reCAPTCHA badge (disclose in privacy policy) */
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
+/* Respect prefers-reduced-motion for CSS keyframe animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

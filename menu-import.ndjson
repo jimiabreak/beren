@@ -1,0 +1,88 @@
+{"_id":"dietary-vg","_type":"dietaryKey","abbreviation":"VG","fullName":"Vegan","order":0}
+{"_id":"dietary-v","_type":"dietaryKey","abbreviation":"V","fullName":"Vegetarian","order":1}
+{"_id":"dietary-gf","_type":"dietaryKey","abbreviation":"GF","fullName":"Gluten Free","order":2}
+{"_id":"dietary-gfa","_type":"dietaryKey","abbreviation":"GFA","fullName":"Gluten Free Available","order":3}
+{"_id":"dietary-cso","_type":"dietaryKey","abbreviation":"CSO","fullName":"Contains Seed Oil","order":4}
+{"_id":"item-common-breakfast","_type":"menuItem","name":"COMMON BREAKFAST (GFA)","price":"23","description":"2 Vital Farms eggs any style, 1 house-made sausage, 2 bacon strips, 3 potato hash, toasted levain, house-made jam"}
+{"_id":"item-dop-scramble","_type":"menuItem","name":"COMMON D.O.P. SCRAMBLE (GFA)","price":"21","description":"Vital Farms soft scrambled eggs with ricotta, grilled levain, shaved prosciutto di parma DOP, grana padano"}
+{"_id":"item-wagyu-eggs","_type":"menuItem","name":"WAGYU + EGGS (GF)","price":"36","description":"6oz Flat Iron Wagyu, 2 Vital Farms eggs, blistered shishito peppers, fingerling potatoes, chimichurri"}
+{"_id":"item-lox-plate","_type":"menuItem","name":"LOX PLATE (GFA)","price":"28","description":"Cambridge smoked salmon, hard boiled egg, cucumber, red onion, capers, lemon dill cream cheese, everything spice, grilled levain"}
+{"_id":"item-mediterranean-quiche","_type":"menuItem","name":"MEDITERRANEAN QUICHE (V)","price":"21","description":"Feta, spinach, red onion, kalamata olives, olive oil, © side salad"}
+{"_id":"item-goat-cheese-quiche","_type":"menuItem","name":"GOAT CHEESE QUICHE (V)","price":"21","description":"Goat cheese, herbs, arugula salad + balsamic vinaigrette, grilled lemon wedge"}
+{"_id":"item-shiitake-omelette","_type":"menuItem","name":"SHIITAKE OMELETTE (V) (GF)","price":"20","description":"Roasted shiitake mushrooms, garlic, tamari, chive, avocado, sesame seed, chili oil, bok choy salad + miso vinaigrette"}
+{"_id":"item-spinach-omelette","_type":"menuItem","name":"SPINACH OMELETTE (V) (GF)","price":"19","description":"Spinach, goat cheese, herbs, arugula salad + balsamic vinaigrette"}
+{"_id":"item-brussels-omelette","_type":"menuItem","name":"BRUSSELS SPROUTS OMELETTE (V) (GF)","price":"21","description":"Roasted brussels sprouts + honey balsamic glaze, romano, roasted pine nuts, arugula + balsamic side salad"}
+{"_id":"item-french-toast","_type":"menuItem","name":"FRENCH TOAST (V)","price":"20","description":"Calder honey butter + Currey Farms Michigan 100% pure maple syrup *or Macerated berries + whipped cream *or Espresso cème anglaise + vanilla mascarpone"}
+{"_id":"item-buttermilk-waffle","_type":"menuItem","name":"BUTTERMILK WAFFLE (V)","price":"16","description":"Whole wheat, Calder honey butter, Currey Farms Michigan 100% pure maple syrup *Add fresh fruit 7"}
+{"_id":"item-blueberry-pancakes","_type":"menuItem","name":"BLUEBERRY PANCAKES (V)","price":"18","description":"With lemon curd, thyme, ricotta cheese"}
+{"_id":"item-vegan-banana-pancakes","_type":"menuItem","name":"VEGAN SOURDOUGH BANANA PANCAKES (VG)","price":"18","description":"Served with house-made \"Nutella\""}
+{"_id":"item-buttermilk-pancakes","_type":"menuItem","name":"BUTTERMILK PANCAKES (V)","price":"15","description":"House-made honey butter, Currey Farms Michigan 100% pure maple syrup *Add blueberries 3 / chocolate chips 3"}
+{"_id":"item-quinoa-bowl","_type":"menuItem","name":"QUINOA BREAKFAST BOWL (V)","price":"20","description":"2 Vital Farms eggs any style, organic quinoa, seasonal vegetables, sautéed kale, currants, avocado, lemon tahini dressing *Add Gerber Farms chicken 9 / Line-caught tuna salad 7 / Flat Iron Wagyu 26 / Grilled Faroe Island Salmon 15"}
+{"_id":"item-bacon-fried-rice","_type":"menuItem","name":"CRISPY BACON FRIED RICE","price":"20","description":"Brown rice, bacon, vegetables, poached eggs, avocado"}
+{"_id":"item-farro-bowl","_type":"menuItem","name":"LEMON TAHINI FARRO BOWL (V)","price":"20","description":"Farro, kale, mushroom, beet, avocado, vinaigrette, squash, chickpea"}
+{"_id":"item-chorizo-hash","_type":"menuItem","name":"CHORIZO HASH","price":"21","description":"Jalapeño polenta, peppers, onions, potato hash, tomato, spinach, egg"}
+{"_id":"item-brown-rice-bowl","_type":"menuItem","name":"BROWN RICE BOWL (V)","price":"19","description":"Brown rice, kale, vegetables, avocado. Protein add-ons available"}
+{"_id":"item-wagyu-carne-asada","_type":"menuItem","name":"WAGYU CARNE ASADA BOWL (GF)","price":"36","description":"Wagyu, Latin rice, onion, jalapeño, pico de gallo, guacamole"}
+{"_id":"item-fried-egg-sandwich","_type":"menuItem","name":"FRIED EGG SANDWICH (V)","price":"19","description":"Eggs, guacamole, tomato, cheddar, hot sauce, multigrain toast. Add bacon/sausage +$4"}
+{"_id":"item-breakfast-burrito","_type":"menuItem","name":"BREAKFAST BURRITO (V)","price":"20","description":"Eggs, beans, peppers, onions, cheddar, salsa, sour cream, wrapped in flour tortilla"}
+{"_id":"item-avocado-toast","_type":"menuItem","name":"AVOCADO TOAST (V) (GFA)","price":"16","description":"Smashed avocado, cherry tomatoes, everything spice, lemon, on grilled levain"}
+{"_id":"item-baguette-butter","_type":"menuItem","name":"BAGUETTE + BUTTER (V)","price":"7","description":"Grilled levain, Zingerman's creamery sweet butter, house-made jam"}
+{"_id":"item-fresh-fruit","_type":"menuItem","name":"FRESH FRUIT (V) (GF)","price":"9"}
+{"_id":"item-oatmeal","_type":"menuItem","name":"OATMEAL (V)","price":"9","description":"Fresh berries, maple syrup, brown sugar"}
+{"_id":"item-3-eggs","_type":"menuItem","name":"3 EGGS (V) (GF)","price":"5"}
+{"_id":"item-2-eggs","_type":"menuItem","name":"2 EGGS (V) (GF)","price":"4"}
+{"_id":"item-canadian-bacon","_type":"menuItem","name":"CANADIAN BACON (GF)","price":"5"}
+{"_id":"item-pork-bacon","_type":"menuItem","name":"PORK BACON (GF)","price":"5"}
+{"_id":"item-caesar-salad","_type":"menuItem","name":"CAESAR SALAD (GFA)","price":"12","description":"Romaine, parmesan, sourdough crouton, cherry tomatoes, lemon, white anchovy"}
+{"_id":"item-house-salad","_type":"menuItem","name":"HOUSE SALAD (V) (GF)","price":"12","description":"Seasonal greens, roasted tomato, pickled onion, shaved carrot, sunflower seed, lemon vinaigrette"}
+{"_id":"item-addon","_type":"menuItem","name":"ADD-ON (V)","price":"2","description":"Add a side salad or cup of soup to any item"}
+{"_id":"item-cup-soup","_type":"menuItem","name":"CUP SOUP","price":"7"}
+{"_id":"item-bowl-soup","_type":"menuItem","name":"BOWL SOUP","price":"9"}
+{"_id":"item-vanilla-latte","_type":"menuItem","name":"VANILLA LATTE","price":"7","description":"House-made brown sugar simple syrup infused w/ Madagascar vanilla"}
+{"_id":"item-gingerbread-latte","_type":"menuItem","name":"GINGERBREAD LATTE","price":"7","description":"House made gingerbread syrup, espresso, milk"}
+{"_id":"item-frozen-winter-punch","_type":"menuItem","name":"FROZEN WINTER PUNCH","price":"8","description":"Cranberry, orange, ginger, madagascar vanilla, cinnamon"}
+{"_id":"item-raspberry-mocha","_type":"menuItem","name":"RASPBERRY MOCHA","price":"6.5","description":"Whipped cream, cream cheese, harvest spice blend, maple syrup"}
+{"_id":"item-common-coffee","_type":"menuItem","name":"COMMON COFFEE","price":"4"}
+{"_id":"item-rwanda","_type":"menuItem","name":"RWANDA","price":"6"}
+{"_id":"item-el-salvador","_type":"menuItem","name":"EL SALVADOR","price":"6"}
+{"_id":"item-peru","_type":"menuItem","name":"PERU","price":"9"}
+{"_id":"item-brazil-decaf","_type":"menuItem","name":"BRAZIL (DECAF)","price":"4.5"}
+{"_id":"item-colombia-gesha","_type":"menuItem","name":"COLOMBIA (GESHA)","price":"13"}
+{"_id":"item-single-origin-espresso","_type":"menuItem","name":"SINGLE ORIGIN ESPRESSO","price":"4"}
+{"_id":"item-ceremonial-matcha","_type":"menuItem","name":"CEREMONIAL GRADE MATCHA","price":"6"}
+{"_id":"item-americano","_type":"menuItem","name":"AMERICANO","price":"4"}
+{"_id":"item-macchiato","_type":"menuItem","name":"MACCHIATO","price":"4.5"}
+{"_id":"item-cortado","_type":"menuItem","name":"CORTADO","price":"4.8"}
+{"_id":"item-cappuccino","_type":"menuItem","name":"CAPPUCCINO","price":"5"}
+{"_id":"item-latte","_type":"menuItem","name":"LATTE","price":"5.5"}
+{"_id":"item-c-latte","_type":"menuItem","name":"© LATTE","price":"6.5"}
+{"_id":"item-maple-latte","_type":"menuItem","name":"MAPLE LATTE","price":"6.5"}
+{"_id":"item-mocha","_type":"menuItem","name":"MOCHA","price":"6.5"}
+{"_id":"item-oat-milk","_type":"menuItem","name":"WITH OAT MILK (CSO)","price":"1"}
+{"_id":"item-almond-milk","_type":"menuItem","name":"WITH ALMOND MILK","price":"1"}
+{"_id":"item-single-origin-add","_type":"menuItem","name":"WITH SINGLE ORIGIN ESPRESSO","price":"1"}
+{"_id":"item-ceremonial-matcha-add","_type":"menuItem","name":"WITH CEREMONIAL GRADE MATCHA","price":"3"}
+{"_id":"item-chai-latte","_type":"menuItem","name":"CHAI LATTE","price":"5.5"}
+{"_id":"item-sweet-matcha-latte","_type":"menuItem","name":"SWEET MATCHA LATTE","price":"7"}
+{"_id":"item-ceremonial-matcha-latte","_type":"menuItem","name":"CEREMONIAL GRADE MATCHA LATTE","price":"8.5"}
+{"_id":"item-hot-chocolate","_type":"menuItem","name":"HOT CHOCOLATE","price":"5.5"}
+{"_id":"item-teas","_type":"menuItem","name":"TEAS","price":"5","description":"Ancient Golden Yunnan, Earl Grey, Green Bancha, Tropical Coconut, Peach Blossom, Raspberry Green, Ginger Lime, Turmeric Ginger, Hibiscus Berry, Mystic Mint, Chamomile, Cinnamon Plum"}
+{"_id":"item-potato-leek-soup","_type":"menuItem","name":"POTATO LEEK SOUP (VG) (GFA)","price":"8/11","description":"Roasted cauliflower, pineapple chimichurri, scallions served with toasted levain"}
+{"_id":"item-butter-chicken","_type":"menuItem","name":"BUTTER CHICKEN (GFA)","price":"24","description":"House-made garlic naan, white rice, Greek yogurt, parsley, cilantro"}
+{"_id":"item-lamb-shawarma","_type":"menuItem","name":"LAMB SHAWARMA BOWL (GF)","price":"25","description":"Pickled onions and turnips, Greek yogurt, cornichons, cilantro, EVOO"}
+{"_id":"item-ricotta-pistachio","_type":"menuItem","name":"RICOTTA + PISTACHIO TOAST (V) (GFA)","price":"18","description":"Grilled levain sourdough, roasted pistachio butter, chili-infused honey Topped with chopped pistachios, powdered sugar, and sea salt flakes"}
+{"_id":"item-banana-tarte","_type":"menuItem","name":"BANANA TARTE TATIN (V)","price":"19","description":"Caramelized bananas, house-made \"Nutella\", powdered sugar"}
+{"_id":"category-savory","_type":"menuCategory","name":"Savory","id":{"_type":"slug","current":"savory"},"order":0,"items":[{"_type":"reference","_ref":"item-common-breakfast"},{"_type":"reference","_ref":"item-dop-scramble"},{"_type":"reference","_ref":"item-wagyu-eggs"},{"_type":"reference","_ref":"item-lox-plate"},{"_type":"reference","_ref":"item-mediterranean-quiche"},{"_type":"reference","_ref":"item-goat-cheese-quiche"},{"_type":"reference","_ref":"item-shiitake-omelette"},{"_type":"reference","_ref":"item-spinach-omelette"},{"_type":"reference","_ref":"item-brussels-omelette"}]}
+{"_id":"category-sweet","_type":"menuCategory","name":"Sweet","id":{"_type":"slug","current":"sweet"},"order":1,"items":[{"_type":"reference","_ref":"item-french-toast"},{"_type":"reference","_ref":"item-buttermilk-waffle"},{"_type":"reference","_ref":"item-blueberry-pancakes"},{"_type":"reference","_ref":"item-vegan-banana-pancakes"},{"_type":"reference","_ref":"item-buttermilk-pancakes"}]}
+{"_id":"category-bowls","_type":"menuCategory","name":"Bowls","id":{"_type":"slug","current":"bowls"},"order":2,"items":[{"_type":"reference","_ref":"item-quinoa-bowl"},{"_type":"reference","_ref":"item-bacon-fried-rice"},{"_type":"reference","_ref":"item-farro-bowl"},{"_type":"reference","_ref":"item-chorizo-hash"},{"_type":"reference","_ref":"item-brown-rice-bowl"},{"_type":"reference","_ref":"item-wagyu-carne-asada"}]}
+{"_id":"category-sandwich","_type":"menuCategory","name":"Sandwich","id":{"_type":"slug","current":"sandwich"},"order":3,"items":[{"_type":"reference","_ref":"item-fried-egg-sandwich"},{"_type":"reference","_ref":"item-breakfast-burrito"},{"_type":"reference","_ref":"item-avocado-toast"}]}
+{"_id":"category-simple","_type":"menuCategory","name":"Simple","id":{"_type":"slug","current":"simple"},"order":4,"items":[{"_type":"reference","_ref":"item-baguette-butter"},{"_type":"reference","_ref":"item-fresh-fruit"},{"_type":"reference","_ref":"item-oatmeal"},{"_type":"reference","_ref":"item-3-eggs"},{"_type":"reference","_ref":"item-2-eggs"},{"_type":"reference","_ref":"item-canadian-bacon"},{"_type":"reference","_ref":"item-pork-bacon"}]}
+{"_id":"category-greens","_type":"menuCategory","name":"Greens","id":{"_type":"slug","current":"greens"},"order":5,"items":[{"_type":"reference","_ref":"item-caesar-salad"},{"_type":"reference","_ref":"item-house-salad"}]}
+{"_id":"category-sides","_type":"menuCategory","name":"Sides","id":{"_type":"slug","current":"sides"},"order":6,"items":[{"_type":"reference","_ref":"item-addon"},{"_type":"reference","_ref":"item-cup-soup"},{"_type":"reference","_ref":"item-bowl-soup"}]}
+{"_id":"category-monthly-features","_type":"menuCategory","name":"Monthly Features","id":{"_type":"slug","current":"monthly-features"},"order":0,"items":[{"_type":"reference","_ref":"item-vanilla-latte"},{"_type":"reference","_ref":"item-gingerbread-latte"},{"_type":"reference","_ref":"item-frozen-winter-punch"},{"_type":"reference","_ref":"item-raspberry-mocha"}]}
+{"_id":"category-drip-coffee","_type":"menuCategory","name":"Drip Coffee","id":{"_type":"slug","current":"drip-coffee"},"order":1,"items":[{"_type":"reference","_ref":"item-common-coffee"},{"_type":"reference","_ref":"item-rwanda"},{"_type":"reference","_ref":"item-el-salvador"},{"_type":"reference","_ref":"item-peru"},{"_type":"reference","_ref":"item-brazil-decaf"},{"_type":"reference","_ref":"item-colombia-gesha"}]}
+{"_id":"category-espresso-drinks","_type":"menuCategory","name":"Espresso Drinks","id":{"_type":"slug","current":"espresso-drinks"},"order":2,"items":[{"_type":"reference","_ref":"item-single-origin-espresso"},{"_type":"reference","_ref":"item-ceremonial-matcha"},{"_type":"reference","_ref":"item-americano"},{"_type":"reference","_ref":"item-macchiato"},{"_type":"reference","_ref":"item-cortado"},{"_type":"reference","_ref":"item-cappuccino"},{"_type":"reference","_ref":"item-latte"},{"_type":"reference","_ref":"item-c-latte"},{"_type":"reference","_ref":"item-maple-latte"},{"_type":"reference","_ref":"item-mocha"},{"_type":"reference","_ref":"item-oat-milk"},{"_type":"reference","_ref":"item-almond-milk"},{"_type":"reference","_ref":"item-single-origin-add"},{"_type":"reference","_ref":"item-ceremonial-matcha-add"}]}
+{"_id":"category-tea-more","_type":"menuCategory","name":"Tea & More","id":{"_type":"slug","current":"tea-more"},"order":3,"items":[{"_type":"reference","_ref":"item-chai-latte"},{"_type":"reference","_ref":"item-sweet-matcha-latte"},{"_type":"reference","_ref":"item-ceremonial-matcha-latte"},{"_type":"reference","_ref":"item-hot-chocolate"},{"_type":"reference","_ref":"item-teas"}]}
+{"_id":"tab-food","_type":"menuTab","tabId":"food","order":0,"categories":[{"_type":"reference","_ref":"category-savory"},{"_type":"reference","_ref":"category-sweet"},{"_type":"reference","_ref":"category-bowls"},{"_type":"reference","_ref":"category-sandwich"},{"_type":"reference","_ref":"category-simple"},{"_type":"reference","_ref":"category-greens"},{"_type":"reference","_ref":"category-sides"}]}
+{"_id":"tab-drinks","_type":"menuTab","tabId":"drinks","order":1,"categories":[{"_type":"reference","_ref":"category-monthly-features"},{"_type":"reference","_ref":"category-drip-coffee"},{"_type":"reference","_ref":"category-espresso-drinks"},{"_type":"reference","_ref":"category-tea-more"}]}
+{"_id":"tab-features","_type":"menuTab","tabId":"features","name":"Winter '26","order":2,"items":[{"_type":"reference","_ref":"item-potato-leek-soup"},{"_type":"reference","_ref":"item-butter-chicken"},{"_type":"reference","_ref":"item-lamb-shawarma"},{"_type":"reference","_ref":"item-ricotta-pistachio"},{"_type":"reference","_ref":"item-banana-tarte"}]}
