@@ -8,14 +8,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--color-background)",
-        foreground: "var(--color-foreground)",
-
+        background: {
+          DEFAULT: "var(--color-background)",
+          light: "var(--color-background-light)",
+        },
+        foreground: {
+          DEFAULT: "var(--color-foreground)",
+          dark: "var(--color-foreground-dark)",
+        },
         muted: {
           DEFAULT: "var(--color-muted)",
           foreground: "var(--color-muted-foreground)",
         },
         border: "var(--color-border)",
+        accent: "var(--color-accent)",
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', '-apple-system', 'sans-serif'],

@@ -35,11 +35,14 @@
   --font-sans: 'Shirakaba', system-ui, -apple-system, sans-serif;
   --font-serif: 'Shirakaba', system-ui, -apple-system, sans-serif;
   --font-mono: 'Shirakaba Mono', ui-monospace, monospace;
-  --color-background: #D5D0CB;
-  --color-foreground: #1A1A1A;
-  --color-muted: #C8C3BE;
-  --color-muted-foreground: #6B6560;
-  --color-border: #B8B3AE;
+  --color-background: #86351C;
+  --color-background-light: #E8E7DC;
+  --color-foreground: #DCDBC4;
+  --color-foreground-dark: #86351C;
+  --color-muted: #6E2C17;
+  --color-muted-foreground: #E8E7DC;
+  --color-border: #A0543F;
+  --color-accent: #FF5B00;
 }
 
 body {

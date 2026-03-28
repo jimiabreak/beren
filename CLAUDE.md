@@ -257,20 +257,20 @@ Available variants: `fadeInUp`, `fadeIn`, `staggerContainer`, `pageTransition`
 
 ## Color System
 
-CSS variables defined in `app/globals.css`, mapped to Tailwind in `tailwind.config.ts`. **Update these to match the Figma design:**
+CSS variables defined in `app/globals.css`, mapped to Tailwind in `tailwind.config.ts`:
 
-| Variable                   | Value (from Figma)         | Tailwind Class               | Usage |
-| -------------------------- | -------------------------- | ---------------------------- | ----- |
-| `--color-background`       | Deep terracotta `~#8B3A2A` | `bg-background`              | Primary page backgrounds |
-| `--color-background-light` | Warm cream `~#F5EDE4`      | `bg-background-light`        | Menu page, light sections |
-| `--color-foreground`       | Cream/white `~#F5EDE4`     | `text-foreground`            | Text on dark backgrounds |
-| `--color-foreground-dark`  | Dark brown `~#1A1A1A`      | `text-foreground-dark`       | Text on light backgrounds |
-| `--color-muted`            | Muted terracotta `~#7A3325`| `bg-muted`                   | Subtle background variation |
-| `--color-muted-foreground` | Soft cream `~#D5CFC9`      | `text-muted-foreground`      | Secondary text |
-| `--color-border`           | Brown border `~#A0543F`    | `border-border`              | Dividers, borders |
-| `--color-accent`           | Bright orange/red `~#E04A2B`| `bg-accent`                 | CTAs, active tab indicators |
+| Variable                      | Value     | Tailwind Class            |
+| ----------------------------- | --------- | ------------------------- |
+| `--color-background`          | `#86351C` | `bg-background`           |
+| `--color-background-light`    | `#E8E7DC` | `bg-background-light`     |
+| `--color-foreground`          | `#DCDBC4` | `text-foreground`         |
+| `--color-foreground-dark`     | `#86351C` | `text-foreground-dark`    |
+| `--color-muted`               | `#6E2C17` | `bg-muted`                |
+| `--color-muted-foreground`    | `#E8E7DC` | `text-muted-foreground`   |
+| `--color-border`              | `#A0543F` | `border-border`           |
+| `--color-accent`              | `#FF5B00` | `bg-accent`/`text-accent` |
 
-**Note:** The exact hex values should be extracted from the Figma file — the values above are approximations from the screenshot. The design is predominantly **dark (terracotta) backgrounds with cream text**, with the Menu page being the exception (cream background with dark text).
+Dark terracotta + warm cream two-tone system with bright orange accent. Headlines/nav use `--color-foreground` (#DCDBC4), body copy uses `--color-muted-foreground` (#E8E7DC). Light backgrounds (Menu page) use `bg-background-light` + `text-foreground-dark`.
 
 ## Fonts
 
