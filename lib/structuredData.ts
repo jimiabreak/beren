@@ -38,13 +38,12 @@ export function organizationJsonLd(settings: SiteSettings) {
         closes: '23:00',
       },
     ],
-    ...(settings.socialLinks && {
-      sameAs: settings.socialLinks.map((s) => s.url),
-    }),
     sameAs: [
       'https://www.instagram.com/berenmediterranean/',
       'https://www.facebook.com/berenmediterranean',
-      ...(settings.socialLinks?.map((s) => s.url) || []),
+      ...(settings.socialLinks?.map((s) => s.url).filter(
+        (url) => !url.includes('instagram.com/berenmediterranean') && !url.includes('facebook.com/berenmediterranean')
+      ) || []),
     ],
   }
 }

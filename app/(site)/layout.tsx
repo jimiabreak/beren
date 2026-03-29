@@ -8,6 +8,7 @@ import VisualEditing from "@/components/sanity/VisualEditing";
 import { VisualEditingProvider } from "@/components/sanity/VisualEditingContext";
 import MotionProvider from "@/components/MotionProvider";
 import PageTransition from "@/components/animations/PageTransition";
+import SplashLoader from "@/components/animations/SplashLoader";
 import JsonLd from "@/components/seo/JsonLd";
 import { organizationJsonLd, webSiteJsonLd } from "@/lib/structuredData";
 import { PROMO_BANNER_QUERY } from "@/sanity/lib/queries";
@@ -17,7 +18,10 @@ import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import "../globals.css";
 
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://berentexas.com"
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "BEREN — A Taste of Turkey in Texas",
     template: "%s | BEREN Meze & Grill House",
@@ -25,20 +29,32 @@ export const metadata: Metadata = {
   description: "Authentic Turkish & Mediterranean cuisine in Fort Worth, Texas. Experience vibrant meze spreads, sizzling kebabs, fresh grills, and traditional desserts at BEREN Meze & Grill House.",
   keywords: ["Turkish restaurant", "Mediterranean food", "Fort Worth", "Texas", "kebab", "meze", "baklava", "Turkish cuisine", "BEREN"],
   authors: [{ name: "BEREN Meze & Grill House" }],
+  icons: {
+    icon: "/Beren_Favicon.png",
+    apple: "/Beren_Favicon.png",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: "BEREN Meze & Grill House",
     title: "BEREN — A Taste of Turkey in Texas",
     description: "Authentic Turkish & Mediterranean cuisine in Fort Worth, Texas. Vibrant meze spreads, sizzling kebabs, and traditional desserts.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://berentexas.com",
+    url: siteUrl,
+    images: [
+      {
+        url: "/Beren_Social Image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "BEREN — Ancestral Mediterranean Cooking, Meze & Grill House",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "BEREN — A Taste of Turkey in Texas",
     description: "Authentic Turkish & Mediterranean cuisine in Fort Worth, Texas.",
+    images: ["/Beren_Social Image.jpg"],
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://berentexas.com"),
 };
 
 const isSanityConfigured = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID && process.env.NEXT_PUBLIC_SANITY_PROJECT_ID !== 'placeholder'
@@ -87,6 +103,7 @@ export default async function RootLayout({
         )}
         <VisualEditingProvider enabled={(await draftMode()).isEnabled}>
           <MotionProvider>
+            <SplashLoader />
             <PageTransition>{children}</PageTransition>
           </MotionProvider>
         </VisualEditingProvider>

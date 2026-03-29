@@ -1,3 +1,74 @@
+# Sanity CMS Rebuild for Beren
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Populate Sanity Studio with real Beren restaurant content, restructure the sidebar, and remove unused elements so the CMS matches the live site.
+
+**Architecture:** Three changes: (1) rewrite the seed script with real Beren data for all singletons + menu tabs, (2) update the desk structure to rename "Menu Categories" → "Menu" and remove the unused "Pages" list, (3) run the seed to populate everything. No schema changes needed — the existing schemas already fit the site's needs.
+
+**Tech Stack:** Sanity v3 (createOrReplace via write client), TypeScript (tsx runner)
+
+---
+
+## File Map
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `scripts/seed-sanity.ts` | Rewrite | Replace placeholder studio content with real Beren data |
+| `sanity/structure/index.ts` | Modify (lines 26-27) | Rename "Menu Categories" → "Menu", remove "Pages" |
+
+---
+
+### Task 1: Update Desk Structure
+
+**Files:**
+- Modify: `sanity/structure/index.ts:26-27`
+
+- [ ] **Step 1: Rename "Menu Categories" → "Menu" and remove "Pages"**
+
+In `sanity/structure/index.ts`, replace:
+
+```ts
+      S.documentTypeListItem('modularPage').title('Pages').icon(DocumentsIcon),
+      S.documentTypeListItem('menuCategory').title('Menu Categories'),
+```
+
+with:
+
+```ts
+      S.documentTypeListItem('menuCategory').title('Menu'),
+```
+
+Also remove the unused `DocumentsIcon` import from the import statement (line 10).
+
+- [ ] **Step 2: Verify Studio loads**
+
+Run: `npm run dev`
+
+Open `http://localhost:3001/studio` and confirm:
+- "Pages" is gone from the sidebar
+- "Menu" appears where "Menu Categories" was
+- No console errors
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add sanity/structure/index.ts
+git commit -m "Rename Menu Categories to Menu, remove unused Pages from sidebar"
+```
+
+---
+
+### Task 2: Rewrite Seed Script with Beren Content
+
+**Files:**
+- Rewrite: `scripts/seed-sanity.ts`
+
+- [ ] **Step 1: Replace the entire seed script**
+
+Replace the full contents of `scripts/seed-sanity.ts` with:
+
+```ts
 /**
  * Sanity Seed Script — Beren Restaurant
  *
@@ -83,11 +154,6 @@ const siteSettings = {
     { _type: 'socialLink', _key: 'fb', platform: 'facebook', url: 'https://facebook.com/berenmediterranean' },
     { _type: 'socialLink', _key: 'ig', platform: 'instagram', url: 'https://instagram.com/berenmediterranean/' },
   ],
-  seo: {
-    _type: 'seo',
-    metaTitle: 'BEREN — A Taste of Turkey in Texas',
-    metaDescription: 'Authentic Turkish & Mediterranean cuisine in Fort Worth, Texas. Wood-fired kebabs, handcrafted mezes, and warm hospitality at BEREN Meze & Grill House.',
-  },
 }
 
 // ---------------------------------------------------------------------------
@@ -172,6 +238,15 @@ const homePage = {
       _type: 'locationTeaser',
       _key: 'home-location',
       heading: 'Fort Worth, Texas',
+    },
+    // 4. Newsletter — signup CTA
+    {
+      _type: 'newsletterSection',
+      _key: 'home-newsletter',
+      heading: 'Stay in the Loop',
+      subheading: 'Sign up for updates on seasonal menus, special events, and exclusive offers.',
+      placeholder: 'Enter your email…',
+      buttonText: 'Subscribe',
     },
   ],
   seo: {
@@ -272,3 +347,101 @@ main().catch((err) => {
   console.error('Fatal error during seeding:', err)
   process.exit(1)
 })
+```
+
+- [ ] **Step 2: Verify script compiles**
+
+Run: `npx tsx --version`
+
+Expected: Version number prints (confirming tsx is available).
+
+- [ ] **Step 3: Commit the seed script**
+
+```bash
+git add scripts/seed-sanity.ts
+git commit -m "Rewrite seed script with real Beren restaurant content"
+```
+
+---
+
+### Task 3: Run the Seed Script
+
+**Files:** None (runtime operation)
+
+- [ ] **Step 1: Run the seed**
+
+Run: `npm run seed`
+
+Expected output:
+```
+===========================================
+  Sanity Seed — BEREN Restaurant
+  Project: bnik0u9v
+  Dataset: production
+===========================================
+
+Seeding Site Settings...
+  + siteSettings "siteSettings"
+  Done. (1 site settings)
+
+Seeding Header...
+  + header "header"
+  Done. (1 header)
+
+Seeding Footer...
+  + footer "footer"
+  Done. (1 footer)
+
+Seeding Home Page...
+  + homePage "homePage"
+  Done. (1 home page)
+
+Seeding Menu Tabs...
+  + menuCategory "menu-lunch"
+  + menuCategory "menu-dinner"
+  + menuCategory "menu-dessert"
+  + menuCategory "menu-drink"
+  + menuCategory "menu-specials"
+  Done. (5 menu tabs)
+
+===========================================
+  Seeding complete!
+===========================================
+```
+
+If any line shows `! Failed to create`, check the error message and fix the corresponding document in the seed script.
+
+- [ ] **Step 2: Verify in Sanity Studio**
+
+Open `http://localhost:3001/studio` and confirm:
+
+1. **Homepage** — Click it. Should show sections: Hero, Home About, Location Teaser, Newsletter.
+2. **Menu** — Click it. Should list 5 tabs: Lunch, Dinner, Dessert, Drink, Specials. Each should have a PDF upload field ready for drag & drop.
+3. **Site Settings > General** — Should show: BEREN, (682) 246 7501, info@berentexas.com, 1216 6th Ave. Fort Worth TX.
+4. **Site Settings > Hours** — Should show 7 days with correct hours.
+5. **Site Settings > Header** — Should show 4 nav links + Reserve CTA.
+6. **Site Settings > Footer** — Should show tagline, Explore column with 4 links, copyright text.
+
+- [ ] **Step 3: Verify the live site homepage renders**
+
+Open `http://localhost:3001` and confirm the homepage now shows content (BEREN logo, food banner, "A Taste of Turkey in Texas" tagline, newsletter section, location teaser).
+
+- [ ] **Step 4: Commit (no code changes — this is a data operation)**
+
+No commit needed for this task — data was written to Sanity, not to the codebase.
+
+---
+
+## Post-Completion Checklist
+
+After all tasks are done, verify:
+
+- [ ] Sanity sidebar shows: Homepage, Menu, Submissions, Promo Banners, Redirects, Site Settings
+- [ ] "Pages" is no longer in the sidebar
+- [ ] "Menu" (not "Menu Categories") shows 5 tab documents
+- [ ] Each menu tab has a PDF upload field (drag & drop ready)
+- [ ] Homepage in Studio has 4 sections populated with real content
+- [ ] Site Settings has real Beren business info (name, phone, email, address, hours, socials)
+- [ ] Header has 4 nav links + Reserve CTA
+- [ ] Footer has tagline + Explore column + copyright
+- [ ] Live site homepage renders correctly at localhost:3001

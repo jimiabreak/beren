@@ -10,6 +10,7 @@ export default function ContactContent() {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
   const formRef = useRef<HTMLFormElement>(null)
+  const nameRef = useRef<HTMLInputElement>(null)
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -45,10 +46,11 @@ export default function ContactContent() {
     } catch (err: unknown) {
       setFormState('error')
       setErrorMessage(err instanceof Error ? err.message : 'Failed to send message')
+      nameRef.current?.focus()
     }
   }
 
-  const inputStyles = 'w-full bg-transparent border-b border-accent py-4 text-base text-foreground placeholder:text-foreground/60 uppercase tracking-wider focus:outline-none focus:border-foreground transition-colors'
+  const inputStyles = 'w-full bg-transparent border-b border-accent py-4 text-base text-foreground placeholder:text-foreground/60 uppercase tracking-wider focus:outline-none focus:border-foreground focus:border-b-2 transition-all duration-200'
 
   return (
     <>
@@ -60,7 +62,7 @@ export default function ContactContent() {
         transition={{ duration: 0.5 }}
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-16 md:pt-28 pb-12 md:pb-16 text-center"
       >
-        <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-wide text-foreground uppercase">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-wide text-foreground uppercase text-balance">
           Get In Touch
         </h1>
       </motion.div>
@@ -77,7 +79,7 @@ export default function ContactContent() {
           <h2 className="text-base text-foreground uppercase tracking-wider mb-6">
             Send Us a Message
           </h2>
-          <p className="text-base text-muted-foreground leading-relaxed max-w-lg">
+          <p className="text-base text-muted-foreground leading-relaxed max-w-lg text-pretty">
             For general inquiries please fill out the form below, or email us at{' '}
             <a href="mailto:info@berentexas.com" className="underline decoration-accent underline-offset-4 hover:text-foreground transition-colors">
               info@berentexas.com
@@ -114,37 +116,50 @@ export default function ContactContent() {
                 <p className="text-base text-muted-foreground">We&apos;ll get back to you soon.</p>
                 <button
                   onClick={() => setFormState('idle')}
-                  className="mt-4 text-base text-accent underline underline-offset-4 hover:text-foreground transition-colors"
+                  className="mt-4 text-base text-accent underline underline-offset-4 hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   Send another message
                 </button>
               </div>
             ) : (
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-2" noValidate>
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  autoComplete="name"
-                  placeholder="Name"
-                  className={inputStyles}
-                />
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  autoComplete="email"
-                  spellCheck={false}
-                  placeholder="Email"
-                  className={inputStyles}
-                />
-                <input
-                  type="text"
-                  name="message"
-                  required
-                  placeholder="Message"
-                  className={inputStyles}
-                />
+                <div>
+                  <label htmlFor="contact-name" className="sr-only">Name</label>
+                  <input
+                    ref={nameRef}
+                    id="contact-name"
+                    type="text"
+                    name="name"
+                    required
+                    autoComplete="name"
+                    placeholder="Name"
+                    className={inputStyles}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contact-email" className="sr-only">Email</label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    required
+                    autoComplete="email"
+                    spellCheck={false}
+                    placeholder="Email"
+                    className={inputStyles}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contact-message" className="sr-only">Message</label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    required
+                    placeholder="Message"
+                    rows={1}
+                    className={inputStyles + ' resize-none'}
+                  />
+                </div>
                 {formState === 'error' && (
                   <p role="alert" className="text-accent text-sm pt-2">{errorMessage}</p>
                 )}
@@ -152,9 +167,9 @@ export default function ContactContent() {
                   <button
                     type="submit"
                     disabled={formState === 'submitting'}
-                    className="border border-accent text-foreground uppercase tracking-widest text-sm px-8 py-3.5 hover:bg-accent hover:text-background transition-colors disabled:opacity-50"
+                    className="border border-accent text-foreground uppercase tracking-widest text-sm px-8 py-3.5 hover:bg-accent hover:text-background transition-[color,background-color,border-color,transform] disabled:opacity-50 active:scale-[0.97] active:transition-transform active:duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                   >
-                    {formState === 'submitting' ? 'Sending...' : 'Send'}
+                    {formState === 'submitting' ? 'Sending\u2026' : 'Send'}
                   </button>
                 </div>
               </form>
@@ -203,7 +218,7 @@ export default function ContactContent() {
         transition={{ duration: 0.5 }}
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-8 pb-12 text-center"
       >
-        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-wide text-foreground uppercase">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-wide text-foreground uppercase text-balance">
           Getting There
         </h2>
       </motion.div>

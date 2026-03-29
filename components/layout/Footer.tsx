@@ -1,5 +1,9 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { fadeIn } from '@/lib/animations'
 import NewsletterSignup from '@/components/ui/NewsletterSignup'
 
 interface FooterProps {
@@ -46,19 +50,19 @@ export default function Footer({ siteSettings }: FooterProps) {
               href="https://berentexas.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wider"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               berentexas.com
             </a>
             <a
               href="mailto:info@berentexas.com"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wider"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               info@berentexas.com
             </a>
             <a
               href="tel:+16822467501"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wider"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               (682) 246 7501
             </a>
@@ -82,7 +86,7 @@ export default function Footer({ siteSettings }: FooterProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
-                  className="opacity-80 hover:opacity-100 transition-opacity"
+                  className="opacity-80 hover:opacity-100 hover:scale-110 transition-[opacity,transform] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   <Image
                     src="/images/nav/Facebook.svg"
@@ -97,7 +101,7 @@ export default function Footer({ siteSettings }: FooterProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="opacity-80 hover:opacity-100 transition-opacity"
+                  className="opacity-80 hover:opacity-100 hover:scale-110 transition-[opacity,transform] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   <Image
                     src="/images/nav/Instagram.svg"
@@ -113,7 +117,13 @@ export default function Footer({ siteSettings }: FooterProps) {
         </div>
 
         {/* Full-width BEREN logo */}
-        <div className="mt-12 md:mt-16">
+        <motion.div
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mt-12 md:mt-16"
+        >
           <Image
             src="/images/nav/Logo.svg"
             alt="BEREN"
@@ -122,7 +132,7 @@ export default function Footer({ siteSettings }: FooterProps) {
             className="w-full h-auto"
             priority={false}
           />
-        </div>
+        </motion.div>
 
         {/* Bottom bar */}
         <div className="mt-8 pb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -135,10 +145,10 @@ export default function Footer({ siteSettings }: FooterProps) {
 
           {/* Nav links + copyright */}
           <nav className="flex items-center gap-4 text-xs text-muted-foreground uppercase tracking-wider">
-            <Link href="/catering" className="hover:text-foreground transition-colors">
+            <Link href="/catering" className="hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
               Catering
             </Link>
-            <Link href="/contact" className="hover:text-foreground transition-colors">
+            <Link href="/contact" className="hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
               Contact
             </Link>
             <span>

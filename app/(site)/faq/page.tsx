@@ -9,9 +9,17 @@ import FAQContent from './FAQContent'
 import JsonLd from '@/components/seo/JsonLd'
 import { faqPageJsonLd } from '@/lib/structuredData'
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://berentexas.com'
+
 export const metadata: Metadata = {
   title: 'FAQ',
-  description: 'Frequently asked questions about our business, services, and policies.',
+  description: 'Frequently asked questions about BEREN Meze & Grill House — reservations, hours, catering, dietary options, and more.',
+  alternates: { canonical: `${siteUrl}/faq` },
+  openGraph: {
+    title: 'FAQ | BEREN Meze & Grill House',
+    description: 'Frequently asked questions about BEREN — reservations, hours, catering, dietary options, and more.',
+    url: `${siteUrl}/faq`,
+  },
 }
 
 export default async function FAQPage() {

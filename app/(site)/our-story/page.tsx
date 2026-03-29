@@ -9,9 +9,17 @@ import JsonLd from '@/components/seo/JsonLd'
 import { webPageJsonLd } from '@/lib/structuredData'
 import OurStoryContent from '@/components/our-story/OurStoryContent'
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://berentexas.com'
+
 export const metadata: Metadata = {
   title: 'Our Story',
   description: 'The story behind BEREN Meze & Grill House — a taste of tradition, authentic Turkish cuisine in Fort Worth, Texas.',
+  alternates: { canonical: `${siteUrl}/our-story` },
+  openGraph: {
+    title: 'Our Story | BEREN Meze & Grill House',
+    description: 'The story behind BEREN Meze & Grill House — a taste of tradition, authentic Turkish cuisine in Fort Worth, Texas.',
+    url: `${siteUrl}/our-story`,
+  },
 }
 
 export default async function OurStoryPage() {

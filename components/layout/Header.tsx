@@ -28,6 +28,8 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
   const mobileLinks = [
     { href: '/our-story', label: 'Our Story' },
     { href: '/menu', label: 'The Menu' },
+    { href: '/catering', label: 'Catering' },
+    { href: '/contact', label: 'Contact' },
     ...(reserveHref ? [{ href: reserveHref, label: 'Reserve', isButton: true }] : []),
   ]
 
@@ -41,7 +43,7 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
             <nav className="flex items-center gap-4 lg:gap-6">
               <Link
                 href="/our-story"
-                className="text-foreground uppercase tracking-wider text-sm lg:text-base font-mono leading-tight"
+                className="text-foreground uppercase tracking-wider text-sm lg:text-base font-mono leading-tight hover:text-accent transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
                 Our<br />Story
               </Link>
@@ -50,12 +52,12 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
                 alt=""
                 width={20}
                 height={20}
-                className="w-5 h-5 lg:w-6 lg:h-6"
+                className="size-5 lg:size-6"
                 aria-hidden="true"
               />
               <Link
                 href="/menu"
-                className="text-foreground uppercase tracking-wider text-sm lg:text-base font-mono leading-tight"
+                className="text-foreground uppercase tracking-wider text-sm lg:text-base font-mono leading-tight hover:text-accent transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
                 The<br />Menu
               </Link>
@@ -70,7 +72,7 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
             </nav>
 
             {/* Center Zone: Wave icon + tagline */}
-            <Link href="/" className="flex items-center gap-3 text-center">
+            <Link href="/" className="flex items-center gap-3 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
               <Image
                 src="/images/nav/Vector 77.svg"
                 alt=""
@@ -95,7 +97,7 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
                 href={reserveHref}
                 target={isExternal ? '_blank' : undefined}
                 rel={isExternal ? 'noopener noreferrer' : undefined}
-                className="border border-accent text-foreground px-8 py-3 uppercase tracking-wider text-sm hover:bg-accent hover:text-background transition-colors"
+                className="border border-accent text-foreground px-8 py-3 uppercase tracking-wider text-sm hover:bg-accent hover:text-background transition-[color,background-color,border-color,transform] duration-200 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
                 Reserve
               </a>
@@ -107,7 +109,7 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
       {/* Mobile Nav */}
       <div className="md:hidden">
         <div className="flex items-center justify-between h-16 px-4">
-          <Link href="/" className="flex flex-col items-center gap-0.5">
+          <Link href="/" className="flex flex-col items-center gap-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
             <Image
               src="/images/nav/Vector 77.svg"
               alt=""
@@ -122,7 +124,7 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
           </Link>
           <button
             ref={menuButtonRef}
-            className="touch-target flex items-center justify-center text-foreground"
+            className="touch-target flex items-center justify-center text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             onClick={() => setMobileNavOpen(true)}
             aria-expanded={mobileNavOpen}
             aria-label="Open menu"

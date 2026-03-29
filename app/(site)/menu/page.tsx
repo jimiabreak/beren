@@ -7,9 +7,17 @@ import MenuTabs from '@/components/menu/MenuTabs'
 import JsonLd from '@/components/seo/JsonLd'
 import { webPageJsonLd } from '@/lib/structuredData'
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://berentexas.com'
+
 export const metadata: Metadata = {
   title: 'Our Menu',
   description: 'Explore the BEREN menu — authentic Turkish and Mediterranean dishes crafted with locally-sourced ingredients.',
+  alternates: { canonical: `${siteUrl}/menu` },
+  openGraph: {
+    title: 'Our Menu | BEREN Meze & Grill House',
+    description: 'Explore the BEREN menu — authentic Turkish and Mediterranean dishes crafted with locally-sourced ingredients.',
+    url: `${siteUrl}/menu`,
+  },
 }
 
 export default async function MenuPage() {

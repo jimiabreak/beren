@@ -98,14 +98,14 @@ export default function HeroSection({ headline, subheadline, ctaButtons, backgro
             <div className="max-w-xl">
               <motion.h1
                 variants={fadeInUp}
-                className="font-semibold text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95] text-foreground"
+                className="font-semibold text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95] text-foreground text-balance"
               >
                 {headline || 'Welcome'}
               </motion.h1>
               {subheadline && (
                 <motion.p
                   variants={fadeInUp}
-                  className="text-lg md:text-xl text-muted-foreground mt-8 max-w-md"
+                  className="text-lg md:text-xl text-muted-foreground mt-8 max-w-md text-pretty"
                 >
                   {subheadline}
                 </motion.p>
@@ -124,13 +124,13 @@ export default function HeroSection({ headline, subheadline, ctaButtons, backgro
             </div>
           </motion.div>
           {backgroundImage && (
-            <div className="relative min-h-[50vh] md:min-h-full overflow-hidden group">
+            <div className="relative min-h-[50vh] md:min-h-full overflow-hidden">
               <SanityImage
                 image={backgroundImage}
                 alt={headline || 'Hero'}
                 fill
                 sizes="50vw"
-                className="object-cover transition-transform duration-700 ease-[cubic-bezier(.19,1,.22,1)] group-hover:scale-[1.03]"
+                className="object-cover"
                 priority
               />
             </div>
@@ -162,14 +162,14 @@ export default function HeroSection({ headline, subheadline, ctaButtons, backgro
         >
           <motion.h1
             variants={fadeInUp}
-            className={`font-semibold text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95] ${hasBackgroundImage ? 'text-background' : 'text-foreground'}`}
+            className={`font-semibold text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95] text-balance ${hasBackgroundImage ? 'text-background' : 'text-foreground'}`}
           >
             {headline || 'Welcome'}
           </motion.h1>
           {subheadline && (
             <motion.p
               variants={fadeInUp}
-              className={`text-lg md:text-xl mt-8 max-w-2xl ${hasBackgroundImage ? 'text-background/80' : 'text-muted-foreground'} ${isCentered ? 'mx-auto' : ''}`}
+              className={`text-lg md:text-xl mt-8 max-w-2xl text-pretty ${hasBackgroundImage ? 'text-background/80' : 'text-muted-foreground'} ${isCentered ? 'mx-auto' : ''}`}
             >
               {subheadline}
             </motion.p>

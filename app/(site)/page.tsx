@@ -9,12 +9,15 @@ import { webPageJsonLd } from '@/lib/structuredData'
 
 export async function generateMetadata(): Promise<Metadata> {
   const { data: page } = await sanityFetch({ query: HOME_PAGE_QUERY, tags: ['homePage'] })
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://berentexas.com'
   return {
-    title: page?.seo?.metaTitle || 'Home',
-    description: page?.seo?.metaDescription || undefined,
+    title: page?.seo?.metaTitle || 'BEREN — A Taste of Turkey in Texas',
+    description: page?.seo?.metaDescription || 'Authentic Turkish & Mediterranean cuisine in Fort Worth, Texas. Vibrant meze spreads, sizzling kebabs, fresh grills, and traditional desserts.',
+    alternates: { canonical: siteUrl },
     openGraph: {
-      title: page?.seo?.metaTitle || 'Home',
-      description: page?.seo?.metaDescription || undefined,
+      title: page?.seo?.metaTitle || 'BEREN — A Taste of Turkey in Texas',
+      description: page?.seo?.metaDescription || 'Authentic Turkish & Mediterranean cuisine in Fort Worth, Texas.',
+      url: siteUrl,
     },
   }
 }

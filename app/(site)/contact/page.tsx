@@ -7,9 +7,17 @@ import JsonLd from '@/components/seo/JsonLd'
 import { webPageJsonLd } from '@/lib/structuredData'
 import ContactContent from './ContactContent'
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://berentexas.com'
+
 export const metadata: Metadata = {
   title: 'Get In Touch',
   description: 'Contact BEREN Meze & Grill House — send us a message, find our location, parking, and hours in Fort Worth, Texas.',
+  alternates: { canonical: `${siteUrl}/contact` },
+  openGraph: {
+    title: 'Get In Touch | BEREN Meze & Grill House',
+    description: 'Contact BEREN Meze & Grill House — send us a message, find our location, parking, and hours in Fort Worth, Texas.',
+    url: `${siteUrl}/contact`,
+  },
 }
 
 export default async function ContactPage() {

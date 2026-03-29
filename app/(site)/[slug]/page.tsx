@@ -19,6 +19,8 @@ interface PageProps {
   params: Promise<{ slug: string }>
 }
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://berentexas.com'
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const { data: page } = await sanityFetch({
@@ -28,12 +30,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   })
   if (!page) return {}
 
+  const title = page.seo?.metaTitle || page.title
+  const description = page.seo?.metaDescription || undefined
+  const url = `${siteUrl}/${slug}`
+
   return {
-    title: page.seo?.metaTitle || page.title,
-    description: page.seo?.metaDescription,
+    title,
+    description,
+    alternates: { canonical: url },
     openGraph: {
-      title: page.seo?.metaTitle || page.title,
-      description: page.seo?.metaDescription || undefined,
+      title,
+      description,
+      url,
     },
   }
 }
