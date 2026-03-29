@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import type { SanityImageSource } from '@sanity/image-url'
-import type { SanityImageObject } from '@sanity/image-url/lib/types/types'
 import { urlFor } from '@/sanity/lib/image'
 
 interface SanityImageProps {
@@ -38,7 +37,7 @@ export default function SanityImage({
       .quality(80)
       .url()
 
-    const hotspot = (image as SanityImageObject)?.hotspot
+    const hotspot = (image as { hotspot?: { x: number; y: number } })?.hotspot
     const objectPosition = hotspot
       ? `${Math.round(hotspot.x * 100)}% ${Math.round(hotspot.y * 100)}%`
       : undefined
