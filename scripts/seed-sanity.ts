@@ -168,15 +168,6 @@ const homePage = {
       _key: 'home-location',
       heading: 'Fort Worth, Texas',
     },
-    // 4. Newsletter — signup CTA
-    {
-      _type: 'newsletterSection',
-      _key: 'home-newsletter',
-      heading: 'Stay in the Loop',
-      subheading: 'Sign up for updates on seasonal menus, special events, and exclusive offers.',
-      placeholder: 'Enter your email…',
-      buttonText: 'Subscribe',
-    },
   ],
   seo: {
     _type: 'seo',

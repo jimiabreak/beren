@@ -23,7 +23,7 @@ Content is managed entirely from the CMS — no code changes needed for content 
 | **Our Menu** | `/menu` | Tab-based PDF menu viewer — each tab loads a different PDF (e.g., Breakfast, Lunch, Dinner, Drinks). No inline text menus. |
 | **Our Story** | `/our-story` | Team/founders photo, image gallery grid, story text sections about the restaurant and its roots |
 | **Catering** | `/catering` | Catering services info, food photography, descriptive text, CTA to contact |
-| **Get In Touch** | `/contact` | Contact form (Resend), "Getting There" section with address/map, business hours |
+| **Get In Touch** | `/contact` | Contact form (Web3Forms), "Getting There" section with address/map, business hours |
 
 ### Menu Page — PDF Tab Structure
 
@@ -65,12 +65,12 @@ npm run typegen      # Sanity schema extract + TypeScript type generation
 - **Styling:** Tailwind CSS with CSS custom properties
 - **Animations:** Framer Motion
 - **CMS:** Sanity v3 (embedded Studio at `/studio`, Visual Editing via Presentation API)
-- **Email:** Resend (contact form + newsletter)
+- **Email:** Web3Forms (contact form + newsletter)
 - **Fonts:** TBD — update once Beren's brand fonts are confirmed (the Figma uses a distinctive rounded/geometric display font for "BEREN" and a clean body font)
 
 ### Data Flow
 
-Server components fetch data via `sanityFetch()` (from `@/sanity/lib/live`) with `tags` for ISR cache invalidation. Every page fetches `siteSettings` for shared data, plus `HEADER_QUERY` and `FOOTER_QUERY` for CMS-driven navigation and footer content (Header/Footer fall back to hardcoded defaults if CMS data is missing). The root layout also fetches the active `promoBanner`. The contact form API writes submission documents to Sanity in parallel with sending email via Resend.
+Server components fetch data via `sanityFetch()` (from `@/sanity/lib/live`) with `tags` for ISR cache invalidation. Every page fetches `siteSettings` for shared data, plus `HEADER_QUERY` and `FOOTER_QUERY` for CMS-driven navigation and footer content (Header/Footer fall back to hardcoded defaults if CMS data is missing). The root layout also fetches the active `promoBanner`. The contact form API sends email via Web3Forms.
 
 ### File Structure
 
@@ -85,7 +85,7 @@ app/
 ├── menu/page.tsx             # Menu page — PDF tab viewer (custom route)
 ├── contact/page.tsx          # Contact page (form + location info)
 ├── studio/[[...tool]]/       # Embedded Sanity Studio
-├── api/contact/route.ts      # Contact form API (Resend + Sanity submissions)
+├── api/contact/route.ts      # Contact form API (Web3Forms)
 ├── api/revalidate/route.ts   # Webhook revalidation endpoint
 ├── api/newsletter/route.ts   # Newsletter subscription endpoint
 └── api/draft/                # Draft mode enable/disable endpoints
@@ -291,9 +291,7 @@ Load via `next/font/google` or `next/font/local` in `app/layout.tsx` and expose 
 | `NEXT_PUBLIC_SANITY_API_VERSION` | No       | Sanity API version (default: `2024-01-01`)             |
 | `SANITY_API_READ_TOKEN`          | Yes      | Sanity read token (for live preview + fetching)        |
 | `SANITY_API_WRITE_TOKEN`         | Yes      | Sanity write token (form submissions)                  |
-| `RESEND_API_KEY`                 | Yes      | Resend API key (for contact form + newsletter emails)  |
-| `CONTACT_EMAIL_TO`               | Yes      | Destination email for contact form submissions         |
-| `CONTACT_EMAIL_FROM`             | Yes      | Sender address for contact form emails                 |
+| `WEB3FORMS_ACCESS_KEY`           | No       | Web3Forms access key (falls back to hardcoded key)     |
 | `SANITY_WEBHOOK_SECRET`          | Yes      | Shared secret for webhook signature validation         |
 | `NEXT_PUBLIC_SITE_URL`           | No       | Production URL (used in sitemap, SEO)                  |
 | `NEXT_PUBLIC_GA_ID`              | No       | Google Analytics measurement ID (consent-gated)        |
@@ -339,13 +337,12 @@ A new document type for the PDF menu tab system:
 
 **Contact Form** (`/contact`):
 - Collects: name, email, phone (optional), subject, message
-- API: `POST /api/contact` — sends email via Resend + writes `submission` doc to Sanity
-- Destination: configured via `CONTACT_EMAIL_TO` env var
+- API: `POST /api/contact` — sends email via Web3Forms
 
-**Newsletter Signup** (appears on Home page and optionally other pages):
+**Newsletter Signup** (footer only):
 - Collects: email only
-- API: `POST /api/newsletter` — sends via Resend
-- Can be placed on any page via the `newsletterSection` page builder section
+- API: `POST /api/newsletter` — sends via Web3Forms
+- Lives in the Footer component — not a standalone page section
 
 ## SEO + Structured Data
 
