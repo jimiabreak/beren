@@ -49,7 +49,7 @@ export default defineType({
                 name: 'reference',
                 type: 'reference',
                 title: 'Page',
-                to: [{ type: 'modularPage' }, { type: 'blogPost' }],
+                to: [{ type: 'modularPage' }],
               },
             ],
           },

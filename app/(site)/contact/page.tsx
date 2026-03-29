@@ -3,11 +3,13 @@ import { sanityFetch } from '@/sanity/lib/live'
 import { SITE_SETTINGS_QUERY, HEADER_QUERY, FOOTER_QUERY } from '@/sanity/lib/queries'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import JsonLd from '@/components/seo/JsonLd'
+import { webPageJsonLd } from '@/lib/structuredData'
 import ContactContent from './ContactContent'
 
 export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Get in touch with us. Find our hours, location, and send us a message.',
+  title: 'Get In Touch',
+  description: 'Contact BEREN Meze & Grill House — send us a message, find our location, parking, and hours in Fort Worth, Texas.',
 }
 
 export default async function ContactPage() {
@@ -20,10 +22,11 @@ export default async function ContactPage() {
   return (
     <>
       <Header siteSettings={settings} cta={headerData?.cta} />
-      <main id="main" className="py-16 sm:py-24">
-        <ContactContent settings={settings} />
+      <main id="main">
+        <ContactContent />
       </main>
       <Footer siteSettings={settings} footerData={footerData} />
+      <JsonLd data={webPageJsonLd('Get In Touch', 'Contact BEREN Meze & Grill House in Fort Worth, Texas.', '/contact')} />
     </>
   )
 }

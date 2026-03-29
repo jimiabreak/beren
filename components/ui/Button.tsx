@@ -14,14 +14,14 @@ interface ButtonProps {
 
 const variants = {
   primary: 'bg-foreground text-background hover:opacity-80',
-  secondary: 'bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background',
-  outline: 'bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background',
+  secondary: 'bg-transparent border border-accent text-foreground hover:bg-accent hover:text-background',
+  outline: 'bg-transparent border border-accent text-foreground hover:bg-accent hover:text-background',
 }
 
 const sizes = {
-  sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-3 text-base',
-  lg: 'px-8 py-4 text-lg',
+  sm: 'px-6 py-3 text-sm',
+  md: 'px-8 py-3.5 text-base',
+  lg: 'px-10 py-4 text-lg',
 }
 
 export default function Button({

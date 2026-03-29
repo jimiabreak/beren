@@ -34,6 +34,8 @@ export default defineType({
         defineArrayMember({ type: 'splitContent' }),
         defineArrayMember({ type: 'contactForm' }),
         defineArrayMember({ type: 'embed' }),
+        defineArrayMember({ type: 'locationTeaser' }),
+        defineArrayMember({ type: 'homeAbout' }),
       ],
     }),
     defineField({

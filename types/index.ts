@@ -184,7 +184,7 @@ export interface ModularHero {
   subheadline?: string
   ctaButtons?: Array<{ _key: string; label: string; url: string; variant?: 'primary' | 'secondary' | 'outline' }>
   backgroundImage?: SanityImage
-  layout?: 'centered' | 'left-aligned' | 'split'
+  layout?: 'centered' | 'left-aligned' | 'split' | 'home'
 }
 
 /** Feature grid section */
@@ -324,6 +324,25 @@ export interface ModularEmbed {
   aspectRatio?: '16:9' | '4:3' | '1:1' | '9:16'
 }
 
+/** Home about section */
+export interface ModularHomeAbout {
+  _type: 'homeAbout'
+  _key: string
+  tagline?: string
+  body?: PortableTextBlock
+  image?: SanityImage
+  ctaButtons?: Array<{ _key: string; label: string; url: string; variant?: 'primary' | 'secondary' | 'outline' }>
+}
+
+/** Location teaser section */
+export interface ModularLocationTeaser {
+  _type: 'locationTeaser'
+  _key: string
+  heading?: string
+  subtitle?: string
+  backgroundImage?: SanityImage
+}
+
 /** Union of all modular section types */
 export type ModularPageSection =
   | ModularHero
@@ -342,6 +361,8 @@ export type ModularPageSection =
   | ModularSplitContent
   | ModularContactForm
   | ModularEmbed
+  | ModularLocationTeaser
+  | ModularHomeAbout
 
 /** Modular Page document */
 export interface ModularPage {

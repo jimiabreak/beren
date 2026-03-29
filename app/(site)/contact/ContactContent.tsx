@@ -1,18 +1,12 @@
 'use client'
 
 import { useState, useRef, FormEvent } from 'react'
-import { stegaClean } from '@sanity/client/stega'
+import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
-import Container from '@/components/layout/Container'
-import Button from '@/components/ui/Button'
-import type { SiteSettings } from '@/types'
 
-interface ContactContentProps {
-  settings: SiteSettings | null
-}
-
-export default function ContactContent({ settings }: ContactContentProps) {
+export default function ContactContent() {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
   const formRef = useRef<HTMLFormElement>(null)
@@ -22,10 +16,7 @@ export default function ContactContent({ settings }: ContactContentProps) {
     setErrorMessage('')
 
     const form = e.currentTarget
-
     if (!form.checkValidity()) {
-      const firstInvalid = form.querySelector<HTMLInputElement | HTMLTextAreaElement>(':invalid')
-      firstInvalid?.focus()
       form.reportValidity()
       return
     }
@@ -40,7 +31,6 @@ export default function ContactContent({ settings }: ContactContentProps) {
         body: JSON.stringify({
           name: (formData.get('name') as string)?.trim(),
           email: (formData.get('email') as string)?.trim(),
-          phone: (formData.get('phone') as string)?.trim(),
           message: (formData.get('message') as string)?.trim(),
         }),
       })
@@ -58,167 +48,216 @@ export default function ContactContent({ settings }: ContactContentProps) {
     }
   }
 
-  function handleTextareaKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
-    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
-      e.preventDefault()
-      formRef.current?.requestSubmit()
-    }
-  }
+  const inputStyles = 'w-full bg-transparent border-b border-accent py-4 text-base text-foreground placeholder:text-foreground/60 uppercase tracking-wider focus:outline-none focus:border-foreground transition-colors'
 
   return (
-    <Container>
-      <motion.h1
-        variants={fadeInUp}
-        initial="hidden"
-        animate="visible"
-        className="font-serif text-4xl sm:text-5xl text-center mb-12"
+    <>
+      {/* GET IN TOUCH */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-16 md:pt-28 pb-12 md:pb-16 text-center"
       >
-        Contact Us
-      </motion.h1>
+        <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-wide text-foreground uppercase">
+          Get In Touch
+        </h1>
+      </motion.div>
 
+      {/* Send us a message intro */}
       <motion.div
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="grid grid-cols-1 lg:grid-cols-2 gap-16"
+        className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-14 md:pb-16"
       >
-        {/* Form */}
         <motion.div variants={fadeInUp}>
-          {formState === 'success' ? (
-            <div className="bg-muted p-8 rounded-sm text-center" aria-live="polite">
-              <h2 className="font-serif text-2xl mb-2">Thank you!</h2>
-              <p className="text-muted-foreground">We&apos;ll get back to you soon.</p>
-            </div>
-          ) : (
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6" noValidate>
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
+          <h2 className="text-base text-foreground uppercase tracking-wider mb-6">
+            Send Us a Message
+          </h2>
+          <p className="text-base text-muted-foreground leading-relaxed max-w-lg">
+            For general inquiries please fill out the form below, or email us at{' '}
+            <a href="mailto:info@berentexas.com" className="underline decoration-accent underline-offset-4 hover:text-foreground transition-colors">
+              info@berentexas.com
+            </a>
+          </p>
+        </motion.div>
+      </motion.div>
+
+      {/* Two-column: photo + form */}
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-24 md:pb-32"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
+          {/* Left: food photo */}
+          <motion.div variants={fadeInUp} className="relative aspect-square overflow-hidden">
+            <Image
+              src="/images/parking/Beren-35 1.jpg"
+              alt="Mezze spread with colorful dips and dishes"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </motion.div>
+
+          {/* Right: form + info */}
+          <motion.div variants={fadeInUp}>
+            {formState === 'success' ? (
+              <div className="py-8" aria-live="polite">
+                <h3 className="text-lg text-foreground uppercase tracking-wider mb-2">Thank you!</h3>
+                <p className="text-base text-muted-foreground">We&apos;ll get back to you soon.</p>
+                <button
+                  onClick={() => setFormState('idle')}
+                  className="mt-4 text-base text-accent underline underline-offset-4 hover:text-foreground transition-colors"
+                >
+                  Send another message
+                </button>
+              </div>
+            ) : (
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-2" noValidate>
                 <input
                   type="text"
-                  id="name"
                   name="name"
                   required
                   autoComplete="name"
-                  placeholder="Jane Doe…"
-                  className="w-full px-4 py-3 border border-border bg-background rounded-sm focus:outline-none focus:ring-2 focus:ring-foreground"
+                  placeholder="Name"
+                  className={inputStyles}
                 />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
                 <input
                   type="email"
-                  id="email"
                   name="email"
                   required
                   autoComplete="email"
                   spellCheck={false}
-                  placeholder="jane@example.com…"
-                  className="w-full px-4 py-3 border border-border bg-background rounded-sm focus:outline-none focus:ring-2 focus:ring-foreground"
+                  placeholder="Email"
+                  className={inputStyles}
                 />
-              </div>
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium mb-2">Phone (optional)</label>
                 <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  autoComplete="tel"
-                  inputMode="tel"
-                  placeholder="(555) 123-4567…"
-                  className="w-full px-4 py-3 border border-border bg-background rounded-sm focus:outline-none focus:ring-2 focus:ring-foreground"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
-                <textarea
-                  id="message"
+                  type="text"
                   name="message"
-                  rows={5}
                   required
-                  placeholder="How can we help…"
-                  onKeyDown={handleTextareaKeyDown}
-                  className="w-full px-4 py-3 border border-border bg-background rounded-sm focus:outline-none focus:ring-2 focus:ring-foreground resize-none"
+                  placeholder="Message"
+                  className={inputStyles}
                 />
-              </div>
-              {formState === 'error' && (
-                <p role="alert" className="text-red-600 text-sm">{errorMessage}</p>
-              )}
-              <Button type="submit" disabled={formState === 'submitting'}>
-                {formState === 'submitting' ? 'Sending…' : 'Send Message'}
-              </Button>
-            </form>
-          )}
-        </motion.div>
+                {formState === 'error' && (
+                  <p role="alert" className="text-accent text-sm pt-2">{errorMessage}</p>
+                )}
+                <div className="pt-6">
+                  <button
+                    type="submit"
+                    disabled={formState === 'submitting'}
+                    className="border border-accent text-foreground uppercase tracking-widest text-sm px-8 py-3.5 hover:bg-accent hover:text-background transition-colors disabled:opacity-50"
+                  >
+                    {formState === 'submitting' ? 'Sending...' : 'Send'}
+                  </button>
+                </div>
+              </form>
+            )}
 
-        {/* Info */}
-        <motion.div variants={fadeInUp} className="space-y-8">
-          {/* Hours */}
-          {settings?.hours && settings.hours.length > 0 && (
-            <div>
-              <h2 className="font-serif text-2xl mb-4">Hours</h2>
-              <div className="space-y-2">
-                {settings.hours.map((h: { _key?: string; day: string; closed?: boolean; openTime?: string; closeTime?: string }) => (
-                  <div key={h._key || stegaClean(h.day)} className="flex justify-between text-sm">
-                    <span>{h.day}</span>
-                    <span className="text-muted-foreground">
-                      {h.closed ? 'Closed' : `${h.openTime} – ${h.closeTime}`}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Address */}
-          {settings?.address && (
-            <div>
-              <h2 className="font-serif text-2xl mb-4">Location</h2>
-              <p className="text-muted-foreground">
-                {settings.address.street}<br />
-                {settings.address.city}, {settings.address.state} {settings.address.zip}
-              </p>
-            </div>
-          )}
-
-          {/* Contact Info */}
-          <div>
-            <h2 className="font-serif text-2xl mb-4">Get in Touch</h2>
-            {settings?.phone && (
-              <p className="text-muted-foreground mb-1">
-                <a href={`tel:${stegaClean(settings.phone)}`} className="hover:text-foreground transition-colors">
-                  {settings.phone}
+            {/* Contact info below form */}
+            <div className="mt-12 space-y-1.5 text-base text-muted-foreground">
+              <p>
+                <a href="https://berentexas.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors uppercase tracking-wider">
+                  berentexas.com
                 </a>
               </p>
-            )}
-            {settings?.email && (
-              <p className="text-muted-foreground">
-                <a href={`mailto:${stegaClean(settings.email)}`} className="hover:text-foreground transition-colors">
-                  {settings.email}
+              <p>
+                <a href="mailto:info@berentexas.com" className="hover:text-foreground transition-colors uppercase tracking-wider">
+                  info@berentexas.com
                 </a>
               </p>
-            )}
-          </div>
-
-          {/* Reservation CTA */}
-          {settings?.reservationUrl && (
-            <div className="bg-muted p-6 rounded-sm">
-              <h3 className="font-serif text-xl mb-2">Make a Reservation</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Book a table through our reservation system.
+              <p>
+                <a href="tel:+16822467501" className="hover:text-foreground transition-colors uppercase tracking-wider">
+                  (682) 246 7501
+                </a>
               </p>
-              <a
-                href={stegaClean(settings.reservationUrl)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-foreground text-background px-6 py-3 text-sm uppercase tracking-wider hover:opacity-80 transition-colors"
-              >
-                Reserve a Table
-              </a>
+              <div className="pt-6 space-y-1.5">
+                <p className="uppercase tracking-wider">1216 6th Ave.</p>
+                <p className="uppercase tracking-wider">Fort Worth, TX</p>
+              </div>
+              <div className="pt-6 space-y-1.5">
+                <p className="uppercase tracking-wider">Hours:</p>
+                <p className="uppercase tracking-wider">Monday-Thursday &amp; Sunday:</p>
+                <p className="uppercase tracking-wider">11:00 AM - 10:00 PM</p>
+                <div className="pt-3">
+                  <p className="uppercase tracking-wider">Friday &amp; Saturday:</p>
+                  <p className="uppercase tracking-wider">11:00 AM - 11:00 PM</p>
+                </div>
+              </div>
             </div>
-          )}
-        </motion.div>
+          </motion.div>
+        </div>
       </motion.div>
-    </Container>
+
+      {/* GETTING THERE */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-8 pb-12 text-center"
+      >
+        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-wide text-foreground uppercase">
+          Getting There
+        </h2>
+      </motion.div>
+
+      {/* Parking map */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
+      >
+        <div className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden">
+          <Image
+            src="/images/parking/parking-img.png"
+            alt="Aerial view of BEREN restaurant location with parking areas highlighted"
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+
+        {/* Parking info */}
+        <div className="flex justify-between items-baseline pt-6 pb-3">
+          <span className="text-base text-foreground uppercase tracking-wider">Parking:</span>
+          <span className="text-base text-foreground uppercase tracking-wider">1216 6th Ave. Fort Worth, TX</span>
+        </div>
+
+        {/* Parking legend tabs */}
+        <div className="grid grid-cols-2 gap-4 pb-10">
+          <div className="flex items-center gap-2 border-b-2 border-accent pb-3">
+            <span className="w-2.5 h-2.5 rounded-full bg-accent" />
+            <span className="text-base text-foreground uppercase tracking-wider">Customer</span>
+          </div>
+          <div className="flex items-center gap-2 border-b-2 border-green-500 pb-3">
+            <span className="w-2.5 h-2.5 rounded-full bg-green-500" />
+            <span className="text-base text-foreground uppercase tracking-wider">After Hours</span>
+          </div>
+        </div>
+
+        {/* PS1200 link */}
+        <div className="text-center pb-20 md:pb-28">
+          <p className="text-base text-muted-foreground">
+            <Link
+              href="https://ps1200.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-accent underline-offset-4 hover:text-foreground transition-colors"
+            >
+              Check out more at the<br />PS1200 campus.
+            </Link>
+          </p>
+        </div>
+      </motion.div>
+    </>
   )
 }

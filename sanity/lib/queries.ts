@@ -141,6 +141,12 @@ const MODULAR_PAGE_SECTIONS_PROJECTION = `
     _type == "embed" => {
       heading, embedType, embedUrl, aspectRatio
     },
+    _type == "locationTeaser" => {
+      heading, subtitle, backgroundImage
+    },
+    _type == "homeAbout" => {
+      tagline, body, image, ctaButtons
+    },
   }
 `
 

@@ -1,20 +1,20 @@
 import type { StructureBuilder } from 'sanity/structure'
 import {
   HomeIcon,
-  BookIcon,
   EnvelopeIcon,
   CogIcon,
   MenuIcon,
   BlockContentIcon,
   LinkIcon,
   BellIcon,
+  DocumentsIcon,
 } from '@sanity/icons'
 
 export const SINGLETONS = ['siteSettings', 'homePage', 'header', 'footer', 'redirects']
 
 export const structure = (S: StructureBuilder) =>
   S.list()
-    .title('Content')
+    .title('BEREN')
     .items([
       S.listItem()
         .title('Homepage')
@@ -23,42 +23,26 @@ export const structure = (S: StructureBuilder) =>
 
       S.divider(),
 
-      S.documentTypeListItem('modularPage').title('Pages'),
+      S.documentTypeListItem('modularPage').title('Pages').icon(DocumentsIcon),
+      S.documentTypeListItem('menuCategory').title('Menu Categories'),
 
       S.divider(),
-
-      S.listItem()
-        .title('Content Library')
-        .icon(BookIcon)
-        .child(
-          S.list()
-            .title('Content Library')
-            .items([
-              S.documentTypeListItem('teamMember').title('Team'),
-              S.documentTypeListItem('testimonial').title('Testimonials'),
-              S.documentTypeListItem('faqItem').title('FAQ'),
-              S.documentTypeListItem('galleryImage').title('Gallery'),
-            ])
-        ),
 
       S.documentTypeListItem('submission').title('Submissions').icon(EnvelopeIcon),
-
-      S.divider(),
-
-      S.documentTypeListItem('redirect').title('Redirects').icon(LinkIcon),
       S.documentTypeListItem('promoBanner').title('Promo Banners').icon(BellIcon),
+      S.documentTypeListItem('redirect').title('Redirects').icon(LinkIcon),
 
       S.divider(),
 
       S.listItem()
-        .title('Site')
+        .title('Site Settings')
         .icon(CogIcon)
         .child(
           S.list()
-            .title('Site')
+            .title('Site Settings')
             .items([
               S.listItem()
-                .title('Settings')
+                .title('General')
                 .icon(CogIcon)
                 .child(S.document().schemaType('siteSettings').documentId('siteSettings')),
               S.listItem()

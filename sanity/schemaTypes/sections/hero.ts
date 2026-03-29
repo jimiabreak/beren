@@ -73,6 +73,7 @@ export default defineType({
           { title: 'Centered', value: 'centered' },
           { title: 'Left-aligned', value: 'left-aligned' },
           { title: 'Split', value: 'split' },
+          { title: 'Home', value: 'home' },
         ],
         layout: 'radio',
       },

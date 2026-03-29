@@ -22,9 +22,8 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
   const reserveHref = stegaClean(cta?.href || siteSettings?.reservationUrl || '')
   const isExternal = reserveHref.startsWith('http')
 
-  // Split tagline on " / " for two-line rendering
-  const tagline = siteSettings?.tagline || 'Ancestral Mediterranean Cooking / Meze & Grill House'
-  const taglineParts = tagline.split(' / ')
+  const navTaglineL1 = 'Ancestral Mediterranean Cooking'
+  const navTaglineL2 = 'Meze & Grill House'
 
   const mobileLinks = [
     { href: '/our-story', label: 'Our Story' },
@@ -36,7 +35,7 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
     <header className="bg-background">
       {/* Desktop Nav */}
       <div className="hidden md:block">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20 lg:h-24">
             {/* Left Zone: Nav links with decorative icons */}
             <nav className="flex items-center gap-4 lg:gap-6">
@@ -70,24 +69,24 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
               />
             </nav>
 
-            {/* Center Zone: Tagline + wave icon */}
-            <Link href="/" className="flex flex-col items-center gap-1 text-center">
+            {/* Center Zone: Wave icon + tagline */}
+            <Link href="/" className="flex items-center gap-3 text-center">
               <Image
                 src="/images/nav/Vector 77.svg"
                 alt=""
                 width={32}
                 height={11}
-                className="w-8 h-3"
+                className="w-7 h-3 flex-shrink-0"
                 aria-hidden="true"
               />
-              {taglineParts.map((part, i) => (
-                <span
-                  key={i}
-                  className="text-foreground uppercase tracking-[0.2em] text-[10px] lg:text-xs leading-tight"
-                >
-                  {part.trim()}
+              <div className="flex flex-col items-start">
+                <span className="text-foreground uppercase tracking-[0.2em] text-[10px] lg:text-xs leading-tight">
+                  {navTaglineL1}
                 </span>
-              ))}
+                <span className="text-foreground uppercase tracking-[0.2em] text-[10px] lg:text-xs leading-tight">
+                  {navTaglineL2}
+                </span>
+              </div>
             </Link>
 
             {/* Right Zone: Reserve CTA */}
@@ -96,7 +95,7 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
                 href={reserveHref}
                 target={isExternal ? '_blank' : undefined}
                 rel={isExternal ? 'noopener noreferrer' : undefined}
-                className="border border-accent text-accent px-6 py-2 uppercase tracking-wider text-sm hover:bg-accent hover:text-background transition-colors"
+                className="border border-accent text-foreground px-8 py-3 uppercase tracking-wider text-sm hover:bg-accent hover:text-background transition-colors"
               >
                 Reserve
               </a>
@@ -118,7 +117,7 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
               aria-hidden="true"
             />
             <span className="text-foreground uppercase tracking-[0.15em] text-[8px] leading-tight">
-              {taglineParts[0]?.trim()}
+              {navTaglineL1}
             </span>
           </Link>
           <button

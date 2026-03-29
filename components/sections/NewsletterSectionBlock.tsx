@@ -49,7 +49,7 @@ export default function NewsletterSectionBlock({
           )}
           {!subheading && heading && <div className="mb-10" />}
           <motion.div variants={fadeInUp}>
-            <NewsletterSignup placeholder={placeholder} buttonText={buttonText} />
+            <NewsletterSignup />
           </motion.div>
         </div>
       </Container>

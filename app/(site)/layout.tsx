@@ -12,17 +12,33 @@ import JsonLd from "@/components/seo/JsonLd";
 import { organizationJsonLd, webSiteJsonLd } from "@/lib/structuredData";
 import { PROMO_BANNER_QUERY } from "@/sanity/lib/queries";
 import PromoBanner from "@/components/ui/PromoBanner";
-import CookieConsent from "@/components/ui/CookieConsent";
+
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import "../globals.css";
 
 
 export const metadata: Metadata = {
   title: {
-    default: "Business Name",
-    template: "%s | Business Name",
+    default: "BEREN — A Taste of Turkey in Texas",
+    template: "%s | BEREN Meze & Grill House",
   },
-  description: "A modern website powered by Bonsai Kit.",
+  description: "Authentic Turkish & Mediterranean cuisine in Fort Worth, Texas. Experience vibrant meze spreads, sizzling kebabs, fresh grills, and traditional desserts at BEREN Meze & Grill House.",
+  keywords: ["Turkish restaurant", "Mediterranean food", "Fort Worth", "Texas", "kebab", "meze", "baklava", "Turkish cuisine", "BEREN"],
+  authors: [{ name: "BEREN Meze & Grill House" }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "BEREN Meze & Grill House",
+    title: "BEREN — A Taste of Turkey in Texas",
+    description: "Authentic Turkish & Mediterranean cuisine in Fort Worth, Texas. Vibrant meze spreads, sizzling kebabs, and traditional desserts.",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://berentexas.com",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BEREN — A Taste of Turkey in Texas",
+    description: "Authentic Turkish & Mediterranean cuisine in Fort Worth, Texas.",
+  },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://berentexas.com"),
 };
 
 const isSanityConfigured = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID && process.env.NEXT_PUBLIC_SANITY_PROJECT_ID !== 'placeholder'
@@ -50,7 +66,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className="font-sans antialiased bg-background text-foreground">
+      <body className="font-sans antialiased bg-background text-foreground max-w-[1440px] mx-auto">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-foreground focus:text-background focus:px-4 focus:py-2 focus:text-sm focus:uppercase focus:tracking-wider"
@@ -76,7 +92,7 @@ export default async function RootLayout({
         </VisualEditingProvider>
         {isSanityConfigured && <SanityLive />}
         {(await draftMode()).isEnabled && <VisualEditing />}
-        <CookieConsent />
+
         <GoogleAnalytics />
         {settings && (
           <>

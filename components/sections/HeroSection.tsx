@@ -1,8 +1,9 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { stegaClean } from '@sanity/client/stega'
-import { fadeInUp, staggerContainer } from '@/lib/animations'
+import { fadeInUp, fadeIn, staggerContainer } from '@/lib/animations'
 import type { SanityImageSource } from '@sanity/image-url'
 import SanityImage from '@/components/sanity/SanityImage'
 import Button from '@/components/ui/Button'
@@ -21,13 +22,68 @@ interface HeroSectionProps {
   subheadline?: string
   ctaButtons?: CTAButton[]
   backgroundImage?: SanityImageSource
-  layout?: 'centered' | 'left-aligned' | 'split'
+  layout?: 'centered' | 'left-aligned' | 'split' | 'home'
 }
 
 export default function HeroSection({ headline, subheadline, ctaButtons, backgroundImage, layout = 'centered' }: HeroSectionProps) {
   const isVisualEditing = useIsVisualEditing()
   const cleanLayout = stegaClean(layout)
 
+  // ── Home layout: Full-width BEREN logo + food banner ─────────────
+  if (cleanLayout === 'home') {
+    return (
+      <section className="overflow-hidden">
+        <motion.div
+          variants={staggerContainer}
+          initial={isVisualEditing ? false : 'hidden'}
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          {/* BEREN Logo — full width SVG */}
+          <motion.div variants={fadeInUp} className="px-4 sm:px-6 lg:px-8 pt-12 md:pt-20 pb-4 md:pb-8">
+            <h1 className="sr-only">{headline || 'BEREN'}</h1>
+            <Image
+              src="/images/nav/Logo.svg"
+              alt="BEREN"
+              width={1674}
+              height={434}
+              className="w-full h-auto"
+              priority
+            />
+          </motion.div>
+
+          {/* Food photography banner — same padding as logo */}
+          <motion.div variants={fadeIn} className="px-4 sm:px-6 lg:px-8 mt-0">
+            {backgroundImage ? (
+              <div className="relative w-full aspect-[16/9] md:aspect-[16/8]">
+                <SanityImage
+                  image={backgroundImage}
+                  alt="Turkish cuisine spread"
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            ) : (
+              <div className="relative w-full aspect-[16/9] md:aspect-[16/8]">
+                <Image
+                  src="/images/home/Beren-36 1.jpg"
+                  alt="Turkish cuisine spread"
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            )}
+          </motion.div>
+        </motion.div>
+      </section>
+    )
+  }
+
+  // ── Split layout ─────────────────────────────────────────────────
   if (cleanLayout === 'split') {
     return (
       <section className="min-h-[80vh]">
@@ -35,7 +91,8 @@ export default function HeroSection({ headline, subheadline, ctaButtons, backgro
           <motion.div
             variants={staggerContainer}
             initial={isVisualEditing ? false : 'hidden'}
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true }}
             className="flex items-center px-8 md:px-16 lg:px-24 py-24 md:py-32"
           >
             <div className="max-w-xl">
@@ -83,6 +140,7 @@ export default function HeroSection({ headline, subheadline, ctaButtons, backgro
     )
   }
 
+  // ── Centered / Left-aligned layouts ──────────────────────────────
   const isCentered = cleanLayout !== 'left-aligned'
   const hasBackgroundImage = !!backgroundImage
 
@@ -98,7 +156,8 @@ export default function HeroSection({ headline, subheadline, ctaButtons, backgro
         <motion.div
           variants={staggerContainer}
           initial={isVisualEditing ? false : 'hidden'}
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true }}
           className={`relative z-10 py-24 md:py-32 flex flex-col ${isCentered ? 'items-center text-center' : 'items-start text-left'}`}
         >
           <motion.h1
