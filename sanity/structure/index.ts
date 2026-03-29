@@ -7,7 +7,6 @@ import {
   BlockContentIcon,
   LinkIcon,
   BellIcon,
-  DocumentsIcon,
 } from '@sanity/icons'
 
 export const SINGLETONS = ['siteSettings', 'homePage', 'header', 'footer', 'redirects']
@@ -23,8 +22,7 @@ export const structure = (S: StructureBuilder) =>
 
       S.divider(),
 
-      S.documentTypeListItem('modularPage').title('Pages').icon(DocumentsIcon),
-      S.documentTypeListItem('menuCategory').title('Menu Categories'),
+      S.documentTypeListItem('menuCategory').title('Menu'),
 
       S.divider(),
 
