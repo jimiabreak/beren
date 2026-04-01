@@ -39,9 +39,9 @@ export default function Footer({ siteSettings }: FooterProps) {
           {/* Left: Newsletter */}
           <div>
             <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-              Sign up for our newsletter to stay in the loop with what&apos;s new at BEREN.
+              Sign up for our newsletter
             </p>
-            <NewsletterSignup />
+            <NewsletterSignup className="max-w-xs" />
           </div>
 
           {/* Contact info */}
@@ -139,7 +139,7 @@ export default function Footer({ siteSettings }: FooterProps) {
           {/* Address */}
           <p className="text-xs text-muted-foreground uppercase tracking-wider">
             {address
-              ? `${address.street}. ${address.city}, ${address.state}`
+              ? `${address.street?.replace(/\.$/, '')}. ${address.city}, ${address.state}`
               : '1216 6th Ave. Fort Worth, TX'}
           </p>
 

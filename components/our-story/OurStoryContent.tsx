@@ -43,7 +43,7 @@ export default function OurStoryContent() {
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
           {/* Left column */}
-          <motion.div variants={fadeInUp}>
+          <motion.div variants={fadeInUp} className="max-w-sm">
             <h2 className="text-lg md:text-xl text-foreground uppercase tracking-wide mb-6">
               A Taste of Tradition, Authentic Turkish Cuisine at Beren
             </h2>

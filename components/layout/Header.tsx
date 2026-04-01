@@ -19,7 +19,7 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
 
-  const reserveHref = stegaClean(cta?.href || siteSettings?.reservationUrl || '')
+  const reserveHref = stegaClean(cta?.href || siteSettings?.reservationUrl || 'https://www.opentable.com/r/beren-meze-and-grill-house-reservations-fort-worth?restref=1503940&lang=en-US&ot_source=Restaurant%20website')
   const isExternal = reserveHref.startsWith('http')
 
   const navTaglineL1 = 'Ancestral Mediterranean Cooking'
@@ -72,16 +72,16 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
             </nav>
 
             {/* Center Zone: Wave icon + tagline */}
-            <Link href="/" className="flex items-center gap-3 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+            <Link href="/" className="flex items-start gap-3 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
               <Image
                 src="/images/nav/Vector 77.svg"
                 alt=""
                 width={32}
                 height={11}
-                className="w-7 h-3 flex-shrink-0"
+                className="w-7 h-3 flex-shrink-0 mt-0.5"
                 aria-hidden="true"
               />
-              <div className="flex flex-col items-start">
+              <div className="flex flex-col items-center">
                 <span className="text-foreground uppercase tracking-[0.2em] text-[10px] lg:text-xs leading-tight">
                   {navTaglineL1}
                 </span>
@@ -97,7 +97,7 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
                 href={reserveHref}
                 target={isExternal ? '_blank' : undefined}
                 rel={isExternal ? 'noopener noreferrer' : undefined}
-                className="border border-accent text-foreground px-8 py-3 uppercase tracking-wider text-sm hover:bg-accent hover:text-background transition-[color,background-color,border-color,transform] duration-200 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                className="border-2 border-accent text-muted-foreground px-8 py-3 uppercase tracking-wider text-sm hover:bg-accent hover:text-background transition-[color,background-color,border-color,transform] duration-200 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
                 Reserve
               </a>
@@ -109,28 +109,23 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
       {/* Mobile Nav */}
       <div className="md:hidden">
         <div className="flex items-center justify-between h-16 px-4">
-          <Link href="/" className="flex flex-col items-center gap-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
-            <Image
-              src="/images/nav/Vector 77.svg"
-              alt=""
-              width={24}
-              height={8}
-              className="w-6 h-2"
-              aria-hidden="true"
-            />
-            <span className="text-foreground uppercase tracking-[0.15em] text-[8px] leading-tight">
+          <Link href="/" className="flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+            <span className="text-foreground uppercase tracking-[0.2em] text-[8px] leading-tight">
               {navTaglineL1}
+            </span>
+            <span className="text-foreground uppercase tracking-[0.2em] text-[8px] leading-tight">
+              {navTaglineL2}
             </span>
           </Link>
           <button
             ref={menuButtonRef}
-            className="touch-target flex items-center justify-center text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="touch-target flex items-center justify-center text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             onClick={() => setMobileNavOpen(true)}
             aria-expanded={mobileNavOpen}
             aria-label="Open menu"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>

@@ -31,13 +31,13 @@ export default function CateringContent() {
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
           {/* Left column */}
-          <motion.div variants={fadeInUp}>
+          <motion.div variants={fadeInUp} className="max-w-sm">
             <h2 className="text-lg md:text-xl text-foreground uppercase tracking-wide mb-6">
-              Unique Catering Experiences for Weddings, Private Gatherings, Engagement Celebrations, &amp; Cultural Occasions.
+              Unique Catering Experiences for Weddings, Private Gatherings, Engagement Celebrations, and Cultural Occasions.
             </h2>
             <Link
               href="/contact"
-              className="inline-block border border-accent text-foreground uppercase tracking-widest text-sm px-8 py-3.5 hover:bg-accent hover:text-background transition-colors"
+              className="inline-block border-2 border-accent text-muted-foreground uppercase tracking-widest text-sm px-8 py-3.5 hover:bg-accent hover:text-background transition-colors"
             >
               Request a Quote
             </Link>
@@ -89,9 +89,9 @@ export default function CateringContent() {
         </div>
 
         {/* Rows 2-3: Left 2 stacked images, right 1 tall image */}
-        <div className="grid grid-cols-[2fr_3fr] grid-rows-2 gap-3 md:gap-4 mb-3 md:mb-4">
+        <div className="grid grid-cols-[2fr_3fr] grid-rows-[1fr_1fr] gap-3 md:gap-4 mb-3 md:mb-4">
           {/* Top-left: kebab plate */}
-          <motion.div variants={fadeInUp} className="relative aspect-[4/3] overflow-hidden">
+          <motion.div variants={fadeInUp} className="relative overflow-hidden">
             <Image
               src="/images/catering/Beren-28 2.jpg"
               alt="Grilled kebab plate"
@@ -113,7 +113,7 @@ export default function CateringContent() {
           </motion.div>
 
           {/* Bottom-left: ground meat with yogurt */}
-          <motion.div variants={fadeInUp} className="relative aspect-square overflow-hidden">
+          <motion.div variants={fadeInUp} className="relative overflow-hidden">
             <Image
               src="/images/catering/Beren-27 2.jpg"
               alt="Ground meat with yogurt"

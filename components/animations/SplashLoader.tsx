@@ -1,84 +1,81 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
-import { motion, useAnimationControls } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
-// Each path from the BEREN wordmark SVG (B, E, R, E, N)
-const BEREN_PATHS = [
-  // B
-  'M0 428.13V25.8427L45.9429 5.74268H118.303C148.357 5.74268 173.817 16.1755 194.683 37.0413C215.549 57.907 225.982 81.5485 225.982 107.966C225.982 137.829 215.74 163.193 195.257 184.059L193.535 185.782C203.106 191.333 212.103 198.416 220.526 207.03C245.412 232.107 257.855 262.64 257.855 298.629C257.855 334.235 245.316 364.768 220.239 390.228C195.545 415.496 165.49 428.13 130.076 428.13H0ZM45.9429 382.188H130.937C153.717 382.188 173.243 373.956 189.515 357.493C205.786 341.03 213.922 321.409 213.922 298.629C213.922 275.466 205.786 255.749 189.515 239.477C173.243 223.206 153.717 215.07 130.937 215.07H119.739H45.9429V382.188ZM118.877 169.127C138.403 168.936 152.952 163.863 162.523 153.909C174.2 141.657 180.039 127.204 180.039 110.55C180.039 109.593 180.039 108.54 180.039 107.391C180.039 93.6085 173.913 81.1657 161.662 70.0628C149.027 58.1942 134.287 52.0685 117.442 51.6856H45.9429V169.127H118.877Z',
-  // E
-  'M422.076 240.052V382.188H626.522L606.422 428.131H376.133V25.5556L422.076 5.45557L589.193 5.74271L569.093 51.6856H422.076V194.109H589.193L569.093 240.052H422.076Z',
-  // R
-  'M705.754 433.873V20.0998L751.697 5.74268H835.83C871.244 5.74268 901.298 18.377 925.993 43.6456C951.07 69.1056 963.609 99.6385 963.609 135.244C963.609 171.233 951.166 201.766 926.28 226.843C914.794 238.52 902.16 247.517 888.377 253.834L967.054 413.773L920.824 433.873L841.86 264.746C839.946 264.746 837.936 264.746 835.83 264.746H751.697V413.773L705.754 433.873ZM751.697 51.6856V218.803H836.691C859.471 218.803 878.997 210.667 895.268 194.396C911.54 178.124 919.676 158.407 919.676 135.244C919.676 112.464 911.54 92.8428 895.268 76.3799C878.997 59.917 859.471 51.6856 836.691 51.6856H751.697Z',
-  // E
-  'M1129.55 240.052V382.188H1334L1313.9 428.131H1083.61V25.5556L1129.55 5.45557L1296.67 5.74271L1276.57 51.6856H1129.55V194.109H1296.67L1276.57 240.052H1129.55Z',
-  // N
-  'M1414.38 433.874V127.779C1414.38 92.5559 1427.01 62.5015 1452.28 37.6158C1477.55 12.5386 1508.08 0 1543.88 0C1579.67 0 1610.21 12.5386 1635.48 37.6158C1660.74 62.5015 1673.38 92.5559 1673.38 127.779V413.774L1627.44 433.874V126.917C1627.24 103.946 1619.01 84.4201 1602.74 68.3401C1586.28 52.0687 1566.66 43.9329 1543.88 43.9329C1520.91 43.9329 1501.19 52.0687 1484.73 68.3401C1468.45 84.4201 1460.32 103.659 1460.32 126.056C1460.32 126.439 1460.32 126.726 1460.32 126.917V413.774L1414.38 433.874Z',
+const ICONS = [
+  { src: '/images/nav/Vector 76.svg', width: 28, height: 28 },   // Sun
+  { src: '/images/nav/Vector 77.svg', width: 32, height: 11 },   // Mountains
+  { src: '/images/nav/Group 1000002677.svg', width: 29, height: 31 }, // Olive branch
 ]
 
-type Phase = 'idle' | 'letters' | 'exit' | 'done'
-
 export default function SplashLoader() {
-  const [phase, setPhase] = useState<Phase>('idle')
-  const curtainControls = useAnimationControls()
-
-  const runExit = useCallback(async () => {
-    setPhase('exit')
-    await curtainControls.start({
-      y: '100%',
-      transition: { duration: 0.55, ease: [0.76, 0, 0.24, 1] },
-    })
-    setPhase('done')
-  }, [curtainControls])
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    if (sessionStorage.getItem('beren-splash-seen')) return
-    sessionStorage.setItem('beren-splash-seen', '1')
-    setPhase('letters')
-
-    // Letters finish bouncing in ~0.15 + 4*0.08 + spring settle ≈ 1s
-    // Hold briefly, then exit
-    const timer = setTimeout(() => { runExit() }, 1400)
+    setVisible(true)
+    const timer = setTimeout(() => setVisible(false), 2000)
     return () => clearTimeout(timer)
-  }, [runExit])
-
-  if (phase === 'idle' || phase === 'done') return null
+  }, [])
 
   return (
-    <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center"
-      style={{ backgroundColor: '#86351C' }}
-      animate={curtainControls}
-    >
-      <svg
-        width="1674"
-        height="434"
-        viewBox="0 0 1674 434"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-[260px] md:w-[340px] lg:w-[400px] h-auto"
-      >
-        {BEREN_PATHS.map((d, i) => (
-          <motion.path
-            key={i}
-            d={d}
-            fill="#DCDBC4"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              transition: {
-                delay: 0.15 + i * 0.08,
-                type: 'spring',
-                stiffness: 400,
-                damping: 25,
-                mass: 0.8,
-              },
-            }}
-          />
-        ))}
-      </svg>
-    </motion.div>
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          key="splash"
+          initial={{ y: 0 }}
+          exit={{ y: '100%' }}
+          transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center"
+          style={{ backgroundColor: '#86351C' }}
+        >
+          {/* 3 Icons */}
+          <div className="flex items-center gap-12 md:gap-16">
+            {ICONS.map((icon, i) => (
+              <motion.div
+                key={icon.src}
+                initial={{ opacity: 0, scale: 0.6 }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                transition={{
+                  delay: 0.2 + i * 0.15,
+                  type: 'spring',
+                  stiffness: 400,
+                  damping: 25,
+                  mass: 0.8,
+                }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={icon.src}
+                  alt=""
+                  width={icon.width}
+                  height={icon.height}
+                  className="w-10 h-10 md:w-12 md:h-12"
+                  aria-hidden="true"
+                />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Tagline text */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.4, ease: 'easeOut' }}
+            className="mt-8 flex flex-col items-center"
+          >
+            <span className="text-foreground uppercase tracking-[0.2em] text-[10px] md:text-xs leading-tight">
+              Ancestral Mediterranean Cooking
+            </span>
+            <span className="text-foreground uppercase tracking-[0.2em] text-[10px] md:text-xs leading-tight mt-1">
+              Meze &amp; Grill House
+            </span>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }

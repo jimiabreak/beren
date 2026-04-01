@@ -3,11 +3,8 @@ import HeroSection from '@/components/sections/HeroSection'
 import FeatureGridSection from '@/components/sections/FeatureGridSection'
 import RichTextBlockSection from '@/components/sections/RichTextBlockSection'
 import ImageGallerySection from '@/components/sections/ImageGallerySection'
-import TestimonialCarouselSection from '@/components/sections/TestimonialCarouselSection'
 import CtaBannerSection from '@/components/sections/CtaBannerSection'
 import VideoSection from '@/components/sections/VideoSection'
-import TeamGridSection from '@/components/sections/TeamGridSection'
-import FaqAccordionSection from '@/components/sections/FaqAccordionSection'
 import StatsBarSection from '@/components/sections/StatsBarSection'
 import LogoBarSection from '@/components/sections/LogoBarSection'
 import SpacerSection from '@/components/sections/SpacerSection'
@@ -24,11 +21,8 @@ const sectionComponents: Record<string, React.ComponentType<any>> = {
   featureGrid: FeatureGridSection,
   richTextBlock: RichTextBlockSection,
   imageGallery: ImageGallerySection,
-  testimonialCarousel: TestimonialCarouselSection,
   ctaBanner: CtaBannerSection,
   videoSection: VideoSection,
-  teamGrid: TeamGridSection,
-  faqAccordion: FaqAccordionSection,
   statsBar: StatsBarSection,
   logoBar: LogoBarSection,
   spacer: SpacerSection,

@@ -49,7 +49,7 @@ export default function NewsletterSignup({ className = '' }: NewsletterSignupPro
   return (
     <form onSubmit={handleSubmit} className={`${className}`}>
       <label htmlFor="newsletter-email" className="sr-only">Email address</label>
-      <div className="flex border border-accent">
+      <div className="flex border-2 border-accent">
         <input
           id="newsletter-email"
           type="email"
@@ -59,7 +59,7 @@ export default function NewsletterSignup({ className = '' }: NewsletterSignupPro
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Your Email"
-          className="flex-1 min-w-0 px-4 py-3 text-sm bg-transparent text-foreground placeholder:text-foreground/50 uppercase tracking-wider focus:outline-none"
+          className="flex-1 min-w-0 px-4 py-3 text-sm bg-transparent text-foreground placeholder:text-accent uppercase tracking-wider focus:outline-none"
           disabled={status === 'loading'}
         />
         <button

@@ -15,8 +15,8 @@ interface ButtonProps {
 
 const variants = {
   primary: 'bg-foreground text-background hover:opacity-80',
-  secondary: 'bg-transparent border border-accent text-foreground hover:bg-accent hover:text-background',
-  outline: 'bg-transparent border border-accent text-foreground hover:bg-accent hover:text-background',
+  secondary: 'bg-transparent border-2 border-accent text-muted-foreground hover:bg-accent hover:text-background',
+  outline: 'bg-transparent border-2 border-accent text-muted-foreground hover:bg-accent hover:text-background',
 }
 
 const sizes = {

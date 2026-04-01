@@ -70,7 +70,11 @@ export default function HomeAboutSection({
                 className="object-cover"
               />
             ) : (
-              <div className="w-full h-full bg-muted" />
+              <img
+                src="/images/home/Beren-39 1.jpg"
+                alt="Hummus with sesame seeds and olive oil"
+                className="w-full h-full object-cover"
+              />
             )}
           </motion.div>
 

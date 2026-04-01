@@ -142,7 +142,7 @@ export default function MobileNav({ isOpen, onClose, links, triggerRef }: Mobile
                         href={link.href}
                         target={link.href.startsWith('http') ? '_blank' : undefined}
                         rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        className="border border-accent text-accent text-center uppercase tracking-wider py-3 mt-4 touch-target hover:bg-accent hover:text-background active:scale-[0.97] transition-[color,background-color,border-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                        className="border-2 border-accent text-accent text-center uppercase tracking-wider py-3 mt-4 touch-target hover:bg-accent hover:text-background active:scale-[0.97] transition-[color,background-color,border-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                         onClick={onClose}
                       >
                         {link.label}

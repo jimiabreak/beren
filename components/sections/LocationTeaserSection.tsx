@@ -29,14 +29,12 @@ export default function LocationTeaserSection({
       className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-16 md:pt-24"
     >
       {/* Accent tagline */}
-      {heading && (
-        <motion.p
-          variants={fadeInUp}
-          className="text-sm md:text-base tracking-[0.2em] text-accent uppercase leading-relaxed mb-4 md:mb-6"
-        >
-          {heading}
-        </motion.p>
-      )}
+      <motion.p
+        variants={fadeInUp}
+        className="text-sm md:text-base tracking-[0.2em] text-accent uppercase leading-relaxed mb-4 md:mb-6"
+      >
+        Ancestral Mediterranean Cooking from the Land of Sun, Sea &amp; Olive Trees.
+      </motion.p>
 
       {/* Cityscape image — constrained to container, with orange border from global CSS */}
       <motion.div variants={fadeIn} className="w-full">

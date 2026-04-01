@@ -68,16 +68,6 @@ export const ACTIVE_REDIRECTS_QUERY = defineQuery(`
 // ─── Home Page ──────────────────────────────────────────────────
 // NOTE: HOME_PAGE_QUERY is below MODULAR_PAGE_SECTIONS_PROJECTION
 
-// ─── FAQ ────────────────────────────────────────────────────────
-export const FAQ_QUERY = defineQuery(`
-  *[_type == "faqItem"] | order(order asc) {
-    _id,
-    question,
-    answer,
-    category
-  }
-`)
-
 // ─── Modular Page (by slug) ─────────────────────────────────────
 const MODULAR_PAGE_SECTIONS_PROJECTION = `
   sections[] {
@@ -95,30 +85,11 @@ const MODULAR_PAGE_SECTIONS_PROJECTION = `
     _type == "imageGallery" => {
       heading, images, layout
     },
-    _type == "testimonialCarousel" => {
-      heading,
-      testimonials[]-> {
-        _id, author, quote, rating, source
-      },
-      autoPlay
-    },
     _type == "ctaBanner" => {
       heading, body, buttons, backgroundColor, textColor
     },
     _type == "videoSection" => {
       heading, videoUrl, posterImage, autoplay
-    },
-    _type == "teamGrid" => {
-      heading, subheading,
-      members[]-> {
-        _id, name, role, image
-      }
-    },
-    _type == "faqAccordion" => {
-      heading,
-      items[]-> {
-        _id, question, answer
-      }
     },
     _type == "statsBar" => {
       stats

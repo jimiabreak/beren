@@ -7,11 +7,11 @@ import Link from 'next/link'
 import Button from '@/components/ui/Button'
 
 const MENU_TABS = [
-  { key: 'lunch', label: 'Lunch', pdf: '/images/menu/menu.pdf' },
-  { key: 'dinner', label: 'Dinner', pdf: '/images/menu/menu.pdf' },
-  { key: 'dessert', label: 'Dessert', pdf: '/images/menu/menu.pdf' },
-  { key: 'drink', label: 'Drink', pdf: '/images/menu/menu.pdf' },
-  { key: 'specials', label: 'Specials', pdf: '/images/menu/menu.pdf' },
+  { key: 'lunch', label: 'Lunch', pdfs: ['/menus/lunch.pdf'] },
+  { key: 'dinner', label: 'Dinner', pdfs: ['/menus/dinner.pdf'] },
+  { key: 'dessert', label: 'Dessert', pdfs: ['/menus/dessert.pdf'] },
+  { key: 'drink', label: 'Drink', pdfs: ['/menus/drinks.pdf', '/menus/wine.pdf'] },
+  { key: 'specials', label: 'Specials', pdfs: ['/menus/specials.pdf'] },
 ]
 
 // PDF aspect ratio: 1175.44 x 2976.93 points
@@ -20,7 +20,7 @@ const PDF_ASPECT = 1175.44 / 2976.93
 export default function MenuTabs() {
   const [activeTab, setActiveTab] = useState('dinner')
 
-  const activePdf = MENU_TABS.find((t) => t.key === activeTab)?.pdf || MENU_TABS[0].pdf
+  const activePdfs = MENU_TABS.find((t) => t.key === activeTab)?.pdfs || MENU_TABS[0].pdfs
 
   return (
     <div>
@@ -35,8 +35,8 @@ export default function MenuTabs() {
               className={`
                 px-5 py-2.5 text-sm uppercase tracking-wider transition-colors duration-200 min-h-touch
                 ${isActive
-                  ? 'bg-accent text-background border border-accent'
-                  : 'bg-transparent text-foreground border border-accent hover:bg-accent/10'
+                  ? 'bg-accent text-background border-2 border-accent'
+                  : 'bg-transparent text-foreground border-2 border-accent hover:bg-accent/10'
                 }
               `}
             >
@@ -46,14 +46,13 @@ export default function MenuTabs() {
         })}
         <Link
           href="/catering"
-          className="px-5 py-2.5 text-sm uppercase tracking-wider transition-colors duration-200 min-h-touch bg-transparent text-foreground border border-accent hover:bg-accent/10"
+          className="px-5 py-2.5 text-sm uppercase tracking-wider transition-colors duration-200 min-h-touch bg-transparent text-foreground border-2 border-accent hover:bg-accent/10"
         >
           Catering
         </Link>
       </div>
 
-      {/* PDF viewer — uses <img> for the PDF rendered as image,
-           with fallback to <embed> for browsers that support it */}
+      {/* PDF viewer — stacks multiple PDFs vertically for combined tabs */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeTab}
@@ -61,15 +60,20 @@ export default function MenuTabs() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
-          className="w-full"
-          style={{ aspectRatio: PDF_ASPECT, backgroundColor: '#E8E7DC' }}
+          className="w-full flex flex-col"
         >
-          <embed
-            src={`${activePdf}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
-            type="application/pdf"
-            className="w-full h-full border-3 border-accent"
-            style={{ border: '3px solid var(--color-accent)' }}
-          />
+          {activePdfs.map((pdf) => (
+            <div
+              key={pdf}
+              style={{ aspectRatio: PDF_ASPECT, backgroundColor: '#E8E7DC' }}
+            >
+              <embed
+                src={`${pdf}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                type="application/pdf"
+                className="w-full h-full"
+              />
+            </div>
+          ))}
         </motion.div>
       </AnimatePresence>
 

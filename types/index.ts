@@ -119,48 +119,6 @@ export interface HomePage {
 // Sanity Document Types
 // =============================================================================
 
-/** Team Member — matches sanity/schemaTypes/documents/teamMember.ts */
-export interface TeamMember {
-  _id: string
-  _type: 'teamMember'
-  name: string
-  role?: string
-  bio?: PortableTextBlock
-  image: SanityImage
-  order?: number
-}
-
-/** Testimonial — matches sanity/schemaTypes/documents/testimonial.ts */
-export interface Testimonial {
-  _id: string
-  _type: 'testimonial'
-  author: string
-  quote: string
-  rating?: number
-  source?: string
-  date?: string
-}
-
-/** FAQ Item — matches sanity/schemaTypes/documents/faqItem.ts */
-export interface FAQItem {
-  _id: string
-  _type: 'faqItem'
-  question: string
-  answer: PortableTextBlock
-  category?: string
-  order?: number
-}
-
-/** Gallery Image — matches sanity/schemaTypes/documents/galleryImage.ts */
-export interface GalleryImage {
-  _id: string
-  _type: 'galleryImage'
-  image: SanityImage
-  alt: string
-  caption?: string
-  order?: number
-}
-
 // =============================================================================
 // Shared Object Types
 // =============================================================================
@@ -214,15 +172,6 @@ export interface ModularImageGallery {
   layout?: 'grid' | 'carousel'
 }
 
-/** Testimonial carousel section */
-export interface ModularTestimonialCarousel {
-  _type: 'testimonialCarousel'
-  _key: string
-  heading?: string
-  testimonials?: Testimonial[]
-  autoPlay?: boolean
-}
-
 /** CTA banner section */
 export interface ModularCtaBanner {
   _type: 'ctaBanner'
@@ -242,23 +191,6 @@ export interface ModularVideoSection {
   videoUrl?: string
   posterImage?: SanityImage
   autoplay?: boolean
-}
-
-/** Team grid section */
-export interface ModularTeamGrid {
-  _type: 'teamGrid'
-  _key: string
-  heading?: string
-  subheading?: string
-  members?: TeamMember[]
-}
-
-/** FAQ accordion section */
-export interface ModularFaqAccordion {
-  _type: 'faqAccordion'
-  _key: string
-  heading?: string
-  items?: FAQItem[]
 }
 
 /** Stats bar section (modular) */
@@ -349,11 +281,8 @@ export type ModularPageSection =
   | ModularFeatureGrid
   | ModularRichTextBlock
   | ModularImageGallery
-  | ModularTestimonialCarousel
   | ModularCtaBanner
   | ModularVideoSection
-  | ModularTeamGrid
-  | ModularFaqAccordion
   | ModularStatsBar
   | ModularLogoBar
   | ModularSpacer

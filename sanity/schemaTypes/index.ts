@@ -11,11 +11,8 @@ import hero from './sections/hero'
 import featureGrid from './sections/featureGrid'
 import richTextBlock from './sections/richTextBlock'
 import imageGallery from './sections/imageGallery'
-import testimonialCarousel from './sections/testimonialCarousel'
 import ctaBanner from './sections/ctaBanner'
 import videoSection from './sections/videoSection'
-import teamGrid from './sections/teamGrid'
-import faqAccordion from './sections/faqAccordion'
 import statsBar from './sections/statsBar'
 import logoBar from './sections/logoBar'
 import spacer from './sections/spacer'
@@ -34,10 +31,6 @@ import footer from './singletons/footer'
 import redirects from './singletons/redirects'
 
 // Document types (multiple entries)
-import teamMember from './documents/teamMember'
-import testimonial from './documents/testimonial'
-import faqItem from './documents/faqItem'
-import galleryImage from './documents/galleryImage'
 import submission from './documents/submission'
 import modularPage from './documents/modularPage'
 import redirect from './documents/redirect'
@@ -57,11 +50,8 @@ export const schemaTypes = [
   featureGrid,
   richTextBlock,
   imageGallery,
-  testimonialCarousel,
   ctaBanner,
   videoSection,
-  teamGrid,
-  faqAccordion,
   statsBar,
   logoBar,
   spacer,
@@ -78,10 +68,6 @@ export const schemaTypes = [
   footer,
   redirects,
   // Documents
-teamMember,
-  testimonial,
-  faqItem,
-  galleryImage,
   submission,
   modularPage,
   redirect,

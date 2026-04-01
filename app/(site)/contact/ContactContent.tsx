@@ -50,7 +50,7 @@ export default function ContactContent() {
     }
   }
 
-  const inputStyles = 'w-full bg-transparent border-b border-accent py-4 text-base text-foreground placeholder:text-foreground/60 uppercase tracking-wider focus:outline-none focus:border-foreground focus:border-b-2 transition-all duration-200'
+  const inputStyles = 'w-full bg-transparent border-b-2 border-accent py-4 text-base text-foreground placeholder:text-accent uppercase tracking-wider focus:outline-none focus:border-foreground transition-all duration-200'
 
   return (
     <>
@@ -79,11 +79,8 @@ export default function ContactContent() {
           <h2 className="text-base text-foreground uppercase tracking-wider mb-6">
             Send Us a Message
           </h2>
-          <p className="text-base text-muted-foreground leading-relaxed max-w-lg text-pretty">
-            For general inquiries please fill out the form below, or email us at{' '}
-            <a href="mailto:info@berentexas.com" className="underline decoration-accent underline-offset-4 hover:text-foreground transition-colors">
-              info@berentexas.com
-            </a>
+          <p className="text-base text-accent leading-relaxed max-w-lg text-pretty">
+            For general inquiries please fill out the form below
           </p>
         </motion.div>
       </motion.div>
@@ -98,7 +95,7 @@ export default function ContactContent() {
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
           {/* Left: food photo */}
-          <motion.div variants={fadeInUp} className="relative aspect-square overflow-hidden">
+          <motion.div variants={fadeInUp} className="relative aspect-[3/5] overflow-hidden">
             <Image
               src="/images/parking/Beren-35 1.jpg"
               alt="Mezze spread with colorful dips and dishes"
@@ -167,7 +164,7 @@ export default function ContactContent() {
                   <button
                     type="submit"
                     disabled={formState === 'submitting'}
-                    className="border border-accent text-foreground uppercase tracking-widest text-sm px-8 py-3.5 hover:bg-accent hover:text-background transition-[color,background-color,border-color,transform] disabled:opacity-50 active:scale-[0.97] active:transition-transform active:duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                    className="border-2 border-accent text-muted-foreground uppercase tracking-widest text-sm px-8 py-3.5 hover:bg-accent hover:text-background transition-[color,background-color,border-color,transform] disabled:opacity-50 active:scale-[0.97] active:transition-transform active:duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                   >
                     {formState === 'submitting' ? 'Sending\u2026' : 'Send'}
                   </button>
