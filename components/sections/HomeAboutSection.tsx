@@ -36,9 +36,8 @@ export default function HomeAboutSection({
     <motion.section
       variants={staggerContainer}
       initial={isVisualEditing ? false : 'hidden'}
-      whileInView="visible"
-      viewport={{ once: true, margin: '-100px' }}
-      className="pt-20 md:pt-32 pb-16 md:pb-24"
+      animate="visible"
+      className="pt-12 md:pt-16 pb-16 md:pb-24"
     >
       {/* Tagline */}
       {tagline && (
@@ -67,13 +66,13 @@ export default function HomeAboutSection({
                 alt="Beren cuisine"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
+                className="object-cover scale-[1.005]"
               />
             ) : (
               <img
-                src="/images/home/Beren-39 1.jpg"
+                src="/images/home/Beren-39 2.png"
                 alt="Hummus with sesame seeds and olive oil"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover scale-[1.005]"
               />
             )}
           </motion.div>

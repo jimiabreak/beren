@@ -31,8 +31,7 @@ export default function StatsBarSection({ stats }: StatsBarSectionProps) {
     <motion.section
       variants={staggerContainer}
       initial={isVisualEditing ? false : 'hidden'}
-      whileInView="visible"
-      viewport={{ once: true }}
+      animate="visible"
       className="py-16 md:py-20 bg-foreground text-background"
     >
       <Container>

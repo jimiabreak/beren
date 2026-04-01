@@ -11,8 +11,7 @@ export default function CateringContent() {
       {/* Page heading */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-16 md:pt-28 pb-12 md:pb-16 text-center"
       >
@@ -25,13 +24,12 @@ export default function CateringContent() {
       <motion.div
         variants={staggerContainer}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+        animate="visible"
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-20 md:pb-28"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
           {/* Left column */}
-          <motion.div variants={fadeInUp}>
+          <motion.div variants={fadeInUp} className="max-w-sm">
             <h2 className="text-lg md:text-xl text-foreground uppercase tracking-wide mb-6">
               Unique Catering Experiences for Weddings, Private Gatherings, Engagement Celebrations, &amp; Cultural Occasions.
             </h2>
@@ -62,8 +60,7 @@ export default function CateringContent() {
       <motion.div
         variants={staggerContainer}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-50px' }}
+        animate="visible"
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
       >
         {/* Row 1: Two equal images */}

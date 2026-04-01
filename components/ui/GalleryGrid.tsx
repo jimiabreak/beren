@@ -21,8 +21,7 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
     <motion.div
       variants={staggerContainer}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-100px' }}
+      animate="visible"
       className="columns-1 sm:columns-2 lg:columns-3 gap-4"
     >
       {images.map((item) => (

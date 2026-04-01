@@ -24,14 +24,13 @@ export default function LocationTeaserSection({
     <motion.section
       variants={staggerContainer}
       initial={isVisualEditing ? false : 'hidden'}
-      whileInView="visible"
-      viewport={{ once: true, margin: '-100px' }}
+      animate="visible"
       className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-16 md:pt-24"
     >
       {/* Accent tagline */}
       <motion.p
         variants={fadeInUp}
-        className="text-sm md:text-base tracking-[0.2em] text-accent uppercase leading-relaxed mb-4 md:mb-6"
+        className="text-sm md:text-base tracking-[0.2em] text-accent uppercase leading-relaxed mb-4 md:mb-6 text-center"
       >
         Ancestral Mediterranean Cooking from the Land of Sun, Sea &amp; Olive Trees.
       </motion.p>
@@ -39,7 +38,7 @@ export default function LocationTeaserSection({
       {/* Cityscape image — constrained to container, with orange border from global CSS */}
       <motion.div variants={fadeIn} className="w-full">
         {backgroundImage ? (
-          <div className="relative w-full aspect-[3.5/1] overflow-hidden">
+          <div className="relative w-full aspect-[5/3] md:aspect-[3.5/1] overflow-hidden">
             <SanityImage
               image={backgroundImage}
               alt="Turkish cityscape"
@@ -49,7 +48,7 @@ export default function LocationTeaserSection({
             />
           </div>
         ) : (
-          <div className="relative w-full aspect-[3.5/1] overflow-hidden">
+          <div className="relative w-full aspect-[5/3] md:aspect-[3.5/1] overflow-hidden">
             <img
               src="/images/home/home-bottom.png"
               alt="Turkish cityscape"

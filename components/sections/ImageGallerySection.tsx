@@ -27,7 +27,7 @@ export default function ImageGallerySection({ heading, images, layout = 'grid' }
   const cleanLayout = stegaClean(layout)
 
   return (
-    <motion.section variants={staggerContainer} initial={isVisualEditing ? false : 'hidden'} whileInView="visible" viewport={{ once: true, margin: '-100px' }} className="py-24 md:py-32">
+    <motion.section variants={staggerContainer} initial={isVisualEditing ? false : 'hidden'} animate="visible" className="py-24 md:py-32">
       <Container>
         {heading && (
           <motion.h2 variants={fadeInUp} className="font-serif font-semibold text-3xl md:text-4xl tracking-tight text-center mb-12">

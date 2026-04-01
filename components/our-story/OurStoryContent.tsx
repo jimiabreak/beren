@@ -23,8 +23,7 @@ export default function OurStoryContent() {
       {/* Page heading */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-16 md:pt-28 pb-12 md:pb-16 text-center"
       >
@@ -37,8 +36,7 @@ export default function OurStoryContent() {
       <motion.div
         variants={staggerContainer}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+        animate="visible"
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-20 md:pb-28"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
@@ -79,8 +77,7 @@ export default function OurStoryContent() {
       {/* Full-width team photo */}
       <motion.div
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
       >
@@ -99,8 +96,7 @@ export default function OurStoryContent() {
       <motion.div
         variants={staggerContainer}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-50px' }}
+        animate="visible"
         className="px-12 sm:px-20 md:px-28 lg:px-36 max-w-7xl mx-auto py-20 md:py-32"
       >
         <div className="grid grid-cols-3 gap-3 md:gap-4">
@@ -125,8 +121,7 @@ export default function OurStoryContent() {
       {/* Full-width building exterior */}
       <motion.div
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-16 md:pb-24"
       >

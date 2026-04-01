@@ -108,24 +108,26 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
 
       {/* Mobile Nav */}
       <div className="md:hidden">
-        <div className="flex items-center justify-between h-16 px-4">
-          <Link href="/" className="flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
-            <span className="text-foreground uppercase tracking-[0.2em] text-[8px] leading-tight">
+        <div className="relative flex items-center justify-center h-14 px-4">
+          <Link href="/" className="flex flex-col items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+            <span className="text-foreground uppercase tracking-[0.2em] text-[10px] leading-tight">
               {navTaglineL1}
             </span>
-            <span className="text-foreground uppercase tracking-[0.2em] text-[8px] leading-tight">
+            <span className="text-foreground uppercase tracking-[0.2em] text-[10px] leading-tight">
               {navTaglineL2}
             </span>
           </Link>
           <button
             ref={menuButtonRef}
-            className="touch-target flex items-center justify-center text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-accent border-0 outline-none focus:outline-none focus-visible:outline-none"
             onClick={() => setMobileNavOpen(true)}
             aria-expanded={mobileNavOpen}
             aria-label="Open menu"
           >
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h16" />
+            <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="3" y="5" width="18" height="2.5" rx="0.5" />
+              <rect x="3" y="11" width="18" height="2.5" rx="0.5" />
+              <rect x="3" y="17" width="18" height="2.5" rx="0.5" />
             </svg>
           </button>
         </div>

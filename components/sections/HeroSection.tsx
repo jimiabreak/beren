@@ -36,11 +36,10 @@ export default function HeroSection({ headline, subheadline, ctaButtons, backgro
         <motion.div
           variants={staggerContainer}
           initial={isVisualEditing ? false : 'hidden'}
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate="visible"
         >
           {/* BEREN Logo — full width SVG */}
-          <motion.div variants={fadeInUp} className="px-4 sm:px-6 lg:px-8 pt-12 md:pt-20 pb-4 md:pb-8">
+          <motion.div variants={fadeInUp} className="px-4 sm:px-6 lg:px-8 pt-16 md:pt-20 pb-4 md:pb-8">
             <h1 className="sr-only">{headline || 'BEREN'}</h1>
             <Image
               src="/images/nav/Logo.svg"
@@ -55,7 +54,7 @@ export default function HeroSection({ headline, subheadline, ctaButtons, backgro
           {/* Food photography banner — same padding as logo */}
           <motion.div variants={fadeIn} className="px-4 sm:px-6 lg:px-8 mt-0">
             {backgroundImage ? (
-              <div className="relative w-full aspect-[16/9] md:aspect-[16/8]">
+              <div className="relative w-full aspect-[3/4] md:aspect-[16/8]">
                 <SanityImage
                   image={backgroundImage}
                   alt="Turkish cuisine spread"
@@ -66,7 +65,7 @@ export default function HeroSection({ headline, subheadline, ctaButtons, backgro
                 />
               </div>
             ) : (
-              <div className="relative w-full aspect-[16/9] md:aspect-[16/8]">
+              <div className="relative w-full aspect-[3/4] md:aspect-[16/8]">
                 <Image
                   src="/images/home/Beren-36 1.jpg"
                   alt="Turkish cuisine spread"
@@ -91,8 +90,7 @@ export default function HeroSection({ headline, subheadline, ctaButtons, backgro
           <motion.div
             variants={staggerContainer}
             initial={isVisualEditing ? false : 'hidden'}
-            whileInView="visible"
-            viewport={{ once: true }}
+            animate="visible"
             className="flex items-center px-8 md:px-16 lg:px-24 py-24 md:py-32"
           >
             <div className="max-w-xl">
@@ -156,8 +154,7 @@ export default function HeroSection({ headline, subheadline, ctaButtons, backgro
         <motion.div
           variants={staggerContainer}
           initial={isVisualEditing ? false : 'hidden'}
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate="visible"
           className={`relative z-10 py-24 md:py-32 flex flex-col ${isCentered ? 'items-center text-center' : 'items-start text-left'}`}
         >
           <motion.h1

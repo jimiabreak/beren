@@ -57,8 +57,7 @@ export default function ContactContent() {
       {/* GET IN TOUCH */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-16 md:pt-28 pb-12 md:pb-16 text-center"
       >
@@ -71,15 +70,14 @@ export default function ContactContent() {
       <motion.div
         variants={staggerContainer}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+        animate="visible"
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-14 md:pb-16"
       >
         <motion.div variants={fadeInUp}>
           <h2 className="text-base text-foreground uppercase tracking-wider mb-6">
             Send Us a Message
           </h2>
-          <p className="text-base text-accent leading-relaxed max-w-lg text-pretty">
+          <p className="text-base text-muted-foreground leading-relaxed max-w-lg text-pretty">
             For general inquiries please fill out the form below
           </p>
         </motion.div>
@@ -89,8 +87,7 @@ export default function ContactContent() {
       <motion.div
         variants={staggerContainer}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+        animate="visible"
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-24 md:pb-32"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
@@ -210,8 +207,7 @@ export default function ContactContent() {
       {/* GETTING THERE */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-8 pb-12 text-center"
       >
@@ -223,8 +219,7 @@ export default function ContactContent() {
       {/* Parking map */}
       <motion.div
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
       >

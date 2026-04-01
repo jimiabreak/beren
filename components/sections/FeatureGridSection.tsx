@@ -35,8 +35,7 @@ export default function FeatureGridSection({ heading, subheading, features, colu
     <motion.section
       variants={staggerContainer}
       initial={isVisualEditing ? false : 'hidden'}
-      whileInView="visible"
-      viewport={{ once: true, margin: '-100px' }}
+      animate="visible"
       className="py-24 md:py-32"
     >
       <Container>

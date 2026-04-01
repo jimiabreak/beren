@@ -25,8 +25,7 @@ export default function NewsletterSectionBlock({
     <motion.section
       variants={staggerContainer}
       initial={isVisualEditing ? false : 'hidden'}
-      whileInView="visible"
-      viewport={{ once: true, margin: '-100px' }}
+      animate="visible"
       className="py-24 md:py-32 bg-foreground text-background"
     >
       <Container>

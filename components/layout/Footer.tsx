@@ -97,7 +97,7 @@ export default function Footer({ siteSettings }: FooterProps) {
                   />
                 </a>
                 <a
-                  href="https://www.instagram.com/berenmediterranean/"
+                  href="https://www.instagram.com/berenmezegrillhouse"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -120,8 +120,7 @@ export default function Footer({ siteSettings }: FooterProps) {
         <motion.div
           variants={fadeIn}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate="visible"
           className="mt-12 md:mt-16"
         >
           <Image
