@@ -29,11 +29,6 @@ body {
   background: var(--color-background);
 }
 
-/* Orange border on all section images */
-main img:not([src*=".svg"]) {
-  border: 3px solid var(--color-accent);
-}
-
 /* Accessibility: minimum touch targets */
 @layer utilities {
   .touch-target {
