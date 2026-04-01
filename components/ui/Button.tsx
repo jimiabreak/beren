@@ -11,6 +11,8 @@ interface ButtonProps {
   className?: string
   type?: 'button' | 'submit' | 'reset'
   ariaLabel?: string
+  target?: string
+  rel?: string
 }
 
 const variants = {
@@ -35,11 +37,21 @@ export default function Button({
   className = '',
   type = 'button',
   ariaLabel,
+  target,
+  rel,
 }: ButtonProps) {
   const baseStyles = 'inline-flex items-center justify-center font-sans uppercase tracking-wider transition-[color,background-color,border-color,opacity,transform] duration-200 ease-out min-h-touch active:scale-[0.97] active:transition-transform active:duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent'
   const classes = cn(baseStyles, variants[variant], sizes[size], disabled && 'opacity-50 cursor-not-allowed', className)
 
   if (href) {
+    const isExternal = href.startsWith('http')
+    if (isExternal) {
+      return (
+        <a href={href} className={classes} aria-label={ariaLabel} target={target || '_blank'} rel={rel || 'noopener noreferrer'}>
+          {children}
+        </a>
+      )
+    }
     return (
       <Link href={href} className={classes} aria-label={ariaLabel}>
         {children}

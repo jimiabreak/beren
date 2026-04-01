@@ -7,20 +7,41 @@ import Link from 'next/link'
 import Button from '@/components/ui/Button'
 
 const MENU_TABS = [
-  { key: 'lunch', label: 'Lunch', pdfs: ['/menus/lunch.pdf'] },
-  { key: 'dinner', label: 'Dinner', pdfs: ['/menus/dinner.pdf'] },
-  { key: 'dessert', label: 'Dessert', pdfs: ['/menus/dessert.pdf'] },
-  { key: 'drink', label: 'Drink', pdfs: ['/menus/drinks.pdf', '/menus/wine.pdf'] },
-  { key: 'specials', label: 'Specials', pdfs: ['/menus/specials.pdf'] },
+  {
+    key: 'lunch',
+    label: 'Lunch',
+    images: [{ src: '/menus/PNG/lunch.png', width: 1650, height: 4200 }],
+  },
+  {
+    key: 'dinner',
+    label: 'Dinner',
+    images: [{ src: '/menus/PNG/dinner.png', width: 1650, height: 4200 }],
+  },
+  {
+    key: 'dessert',
+    label: 'Dessert',
+    images: [{ src: '/menus/PNG/dessert.png', width: 1650, height: 1650 }],
+  },
+  {
+    key: 'drink',
+    label: 'Drink',
+    images: [
+      { src: '/menus/PNG/drinks.png', width: 1650, height: 3300 },
+      { src: '/menus/PNG/wine.png', width: 1650, height: 3300 },
+    ],
+  },
+  {
+    key: 'specials',
+    label: 'Specials',
+    images: [{ src: '/menus/PNG/specials.png', width: 1650, height: 1650 }],
+  },
 ]
-
-// PDF aspect ratio: 1175.44 x 2976.93 points
-const PDF_ASPECT = 1175.44 / 2976.93
 
 export default function MenuTabs() {
   const [activeTab, setActiveTab] = useState('dinner')
 
-  const activePdfs = MENU_TABS.find((t) => t.key === activeTab)?.pdfs || MENU_TABS[0].pdfs
+  const activeImages =
+    MENU_TABS.find((t) => t.key === activeTab)?.images || MENU_TABS[0].images
 
   return (
     <div>
@@ -52,7 +73,7 @@ export default function MenuTabs() {
         </Link>
       </div>
 
-      {/* PDF viewer — stacks multiple PDFs vertically for combined tabs */}
+      {/* Menu images */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeTab}
@@ -60,17 +81,22 @@ export default function MenuTabs() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
-          className="w-full flex flex-col"
+          className="w-full flex flex-col items-center gap-8"
         >
-          {activePdfs.map((pdf) => (
+          {activeImages.map((img) => (
             <div
-              key={pdf}
-              style={{ aspectRatio: PDF_ASPECT, backgroundColor: '#E8E7DC' }}
+              key={img.src}
+              className="w-full max-w-[1000px] border-2 border-accent"
             >
-              <embed
-                src={`${pdf}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
-                type="application/pdf"
-                className="w-full h-full"
+              <Image
+                src={img.src}
+                alt={`${activeTab} menu`}
+                width={img.width}
+                height={img.height}
+                className="w-full h-auto block"
+                unoptimized
+                priority={activeTab === 'dinner'}
+                sizes="(max-width: 768px) 100vw, 700px"
               />
             </div>
           ))}
@@ -79,7 +105,13 @@ export default function MenuTabs() {
 
       {/* CTA */}
       <div className="flex justify-center mt-12 md:mt-16">
-        <Button href="/contact" variant="outline" size="lg">
+        <Button
+          href="https://www.opentable.com/booking/restref/availability?lang=en-US&correlationId=e39a6023-80ca-40e2-89a8-4ddadff82c7e&restRef=1503940&otSource=Restaurant%20website"
+          variant="outline"
+          size="lg"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Make a Reservation
         </Button>
       </div>

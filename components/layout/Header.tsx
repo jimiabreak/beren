@@ -19,7 +19,7 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
 
-  const reserveHref = stegaClean(cta?.href || siteSettings?.reservationUrl || 'https://www.opentable.com/r/beren-meze-and-grill-house-reservations-fort-worth?restref=1503940&lang=en-US&ot_source=Restaurant%20website')
+  const reserveHref = 'https://www.opentable.com/booking/restref/availability?lang=en-US&correlationId=e39a6023-80ca-40e2-89a8-4ddadff82c7e&restRef=1503940&otSource=Restaurant%20website'
   const isExternal = reserveHref.startsWith('http')
 
   const navTaglineL1 = 'Ancestral Mediterranean Cooking'
