@@ -50,7 +50,7 @@ export default function ContactContent() {
     }
   }
 
-  const inputStyles = 'w-full bg-transparent border-b-2 border-accent py-4 text-base text-foreground placeholder:text-accent uppercase tracking-wider focus:outline-none focus:border-foreground transition-all duration-200'
+  const inputStyles = 'w-full bg-transparent border-b-2 border-accent py-4 text-base text-foreground placeholder:text-muted-foreground uppercase tracking-wider focus:outline-none focus:border-foreground transition-all duration-200'
 
   return (
     <>

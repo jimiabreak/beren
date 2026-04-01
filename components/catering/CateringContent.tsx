@@ -29,7 +29,7 @@ export default function CateringContent() {
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
           {/* Left column */}
-          <motion.div variants={fadeInUp} className="max-w-sm">
+          <motion.div variants={fadeInUp} className="max-w-md">
             <h2 className="text-lg md:text-xl text-foreground uppercase tracking-wide mb-6">
               Unique Catering Experiences for Weddings, Private Gatherings, Engagement Celebrations, &amp; Cultural Occasions.
             </h2>

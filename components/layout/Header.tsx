@@ -72,7 +72,7 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
             </nav>
 
             {/* Center Zone: Wave icon + tagline */}
-            <Link href="/" className="flex items-start gap-3 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+            <Link href="/" className="flex items-start gap-3 text-center -ml-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
               <Image
                 src="/images/nav/Vector 77.svg"
                 alt=""

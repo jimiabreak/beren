@@ -66,13 +66,13 @@ export default function HomeAboutSection({
                 alt="Beren cuisine"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover scale-[1.005]"
+                className="object-cover"
               />
             ) : (
               <img
                 src="/images/home/Beren-39%202.png"
                 alt="Hummus with sesame seeds and olive oil"
-                className="w-full h-full object-cover scale-[1.005]"
+                className="w-full h-full object-cover"
               />
             )}
           </motion.div>
