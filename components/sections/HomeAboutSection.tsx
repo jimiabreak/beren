@@ -70,7 +70,7 @@ export default function HomeAboutSection({
               />
             ) : (
               <img
-                src="/images/home/Beren-39 2.png"
+                src="/images/home/Beren-39%202.png"
                 alt="Hummus with sesame seeds and olive oil"
                 className="w-full h-full object-cover scale-[1.005]"
               />
