@@ -1,56 +1,61 @@
-'use client'
+"use client";
 
-import { useState, useRef, FormEvent } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { fadeInUp, staggerContainer } from '@/lib/animations'
+import { useState, useRef, FormEvent } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
 
 export default function ContactContent() {
-  const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
-  const [errorMessage, setErrorMessage] = useState('')
-  const formRef = useRef<HTMLFormElement>(null)
-  const nameRef = useRef<HTMLInputElement>(null)
+  const [formState, setFormState] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setErrorMessage('')
+    e.preventDefault();
+    setErrorMessage("");
 
-    const form = e.currentTarget
+    const form = e.currentTarget;
     if (!form.checkValidity()) {
-      form.reportValidity()
-      return
+      form.reportValidity();
+      return;
     }
 
-    setFormState('submitting')
-    const formData = new FormData(form)
+    setFormState("submitting");
+    const formData = new FormData(form);
 
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: (formData.get('name') as string)?.trim(),
-          email: (formData.get('email') as string)?.trim(),
-          message: (formData.get('message') as string)?.trim(),
+          name: (formData.get("name") as string)?.trim(),
+          email: (formData.get("email") as string)?.trim(),
+          message: (formData.get("message") as string)?.trim(),
         }),
-      })
+      });
 
       if (!res.ok) {
-        const data = await res.json()
-        throw new Error(data.error || 'Something went wrong')
+        const data = await res.json();
+        throw new Error(data.error || "Something went wrong");
       }
 
-      setFormState('success')
-      form.reset()
+      setFormState("success");
+      form.reset();
     } catch (err: unknown) {
-      setFormState('error')
-      setErrorMessage(err instanceof Error ? err.message : 'Failed to send message')
-      nameRef.current?.focus()
+      setFormState("error");
+      setErrorMessage(
+        err instanceof Error ? err.message : "Failed to send message",
+      );
+      nameRef.current?.focus();
     }
   }
 
-  const inputStyles = 'w-full bg-transparent border-b-2 border-accent py-4 text-base text-foreground placeholder:text-muted-foreground uppercase tracking-wider focus:outline-none focus:border-foreground transition-all duration-200'
+  const inputStyles =
+    "w-full bg-transparent border-b-2 border-accent py-4 text-base text-foreground placeholder:text-muted-foreground uppercase tracking-wider focus:outline-none focus:border-foreground transition-all duration-200";
 
   return (
     <>
@@ -78,7 +83,7 @@ export default function ContactContent() {
             Send Us a Message
           </h2>
           <p className="text-base text-muted-foreground leading-relaxed max-w-lg text-pretty">
-            For general inquiries please fill out the form below
+            For general inquiries please fill out the form below.
           </p>
         </motion.div>
       </motion.div>
@@ -92,7 +97,10 @@ export default function ContactContent() {
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
           {/* Left: food photo */}
-          <motion.div variants={fadeInUp} className="relative aspect-[3/5] overflow-hidden">
+          <motion.div
+            variants={fadeInUp}
+            className="relative aspect-[3/5] overflow-hidden"
+          >
             <Image
               src="/images/parking/Beren-35 1.jpg"
               alt="Mezze spread with colorful dips and dishes"
@@ -104,21 +112,32 @@ export default function ContactContent() {
 
           {/* Right: form + info */}
           <motion.div variants={fadeInUp}>
-            {formState === 'success' ? (
+            {formState === "success" ? (
               <div className="py-8" aria-live="polite">
-                <h3 className="text-lg text-foreground uppercase tracking-wider mb-2">Thank you!</h3>
-                <p className="text-base text-muted-foreground">We&apos;ll get back to you soon.</p>
+                <h3 className="text-lg text-foreground uppercase tracking-wider mb-2">
+                  Thank you!
+                </h3>
+                <p className="text-base text-muted-foreground">
+                  We&apos;ll get back to you soon.
+                </p>
                 <button
-                  onClick={() => setFormState('idle')}
+                  onClick={() => setFormState("idle")}
                   className="mt-4 text-base text-accent underline underline-offset-4 hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   Send another message
                 </button>
               </div>
             ) : (
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-2" noValidate>
+              <form
+                ref={formRef}
+                onSubmit={handleSubmit}
+                className="space-y-2"
+                noValidate
+              >
                 <div>
-                  <label htmlFor="contact-name" className="sr-only">Name</label>
+                  <label htmlFor="contact-name" className="sr-only">
+                    Name
+                  </label>
                   <input
                     ref={nameRef}
                     id="contact-name"
@@ -131,7 +150,9 @@ export default function ContactContent() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="contact-email" className="sr-only">Email</label>
+                  <label htmlFor="contact-email" className="sr-only">
+                    Email
+                  </label>
                   <input
                     id="contact-email"
                     type="email"
@@ -144,26 +165,30 @@ export default function ContactContent() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="contact-message" className="sr-only">Message</label>
+                  <label htmlFor="contact-message" className="sr-only">
+                    Message
+                  </label>
                   <textarea
                     id="contact-message"
                     name="message"
                     required
                     placeholder="Message"
                     rows={1}
-                    className={inputStyles + ' resize-none'}
+                    className={inputStyles + " resize-none"}
                   />
                 </div>
-                {formState === 'error' && (
-                  <p role="alert" className="text-accent text-sm pt-2">{errorMessage}</p>
+                {formState === "error" && (
+                  <p role="alert" className="text-accent text-sm pt-2">
+                    {errorMessage}
+                  </p>
                 )}
                 <div className="pt-6">
                   <button
                     type="submit"
-                    disabled={formState === 'submitting'}
+                    disabled={formState === "submitting"}
                     className="border-2 border-accent text-muted-foreground uppercase tracking-widest text-sm px-8 py-3.5 hover:bg-accent hover:text-background transition-[color,background-color,border-color,transform] disabled:opacity-50 active:scale-[0.97] active:transition-transform active:duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                   >
-                    {formState === 'submitting' ? 'Sending\u2026' : 'Send'}
+                    {formState === "submitting" ? "Sending\u2026" : "Send"}
                   </button>
                 </div>
               </form>
@@ -172,17 +197,28 @@ export default function ContactContent() {
             {/* Contact info below form */}
             <div className="mt-12 space-y-1.5 text-base text-muted-foreground">
               <p>
-                <a href="https://berentexas.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors uppercase tracking-wider">
+                <a
+                  href="https://berentexas.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-foreground transition-colors uppercase tracking-wider"
+                >
                   berentexas.com
                 </a>
               </p>
               <p>
-                <a href="mailto:info@berentexas.com" className="hover:text-foreground transition-colors uppercase tracking-wider">
+                <a
+                  href="mailto:info@berentexas.com"
+                  className="hover:text-foreground transition-colors uppercase tracking-wider"
+                >
                   info@berentexas.com
                 </a>
               </p>
               <p>
-                <a href="tel:+16822467501" className="hover:text-foreground transition-colors uppercase tracking-wider">
+                <a
+                  href="tel:+16822467501"
+                  className="hover:text-foreground transition-colors uppercase tracking-wider"
+                >
                   (682) 246 7501
                 </a>
               </p>
@@ -192,11 +228,17 @@ export default function ContactContent() {
               </div>
               <div className="pt-6 space-y-1.5">
                 <p className="uppercase tracking-wider">Hours:</p>
-                <p className="uppercase tracking-wider">Monday-Thursday &amp; Sunday:</p>
+                <p className="uppercase tracking-wider">
+                  Monday-Thursday &amp; Sunday:
+                </p>
                 <p className="uppercase tracking-wider">11:00 AM - 10:00 PM</p>
                 <div className="pt-3">
-                  <p className="uppercase tracking-wider">Friday &amp; Saturday:</p>
-                  <p className="uppercase tracking-wider">11:00 AM - 11:00 PM</p>
+                  <p className="uppercase tracking-wider">
+                    Friday &amp; Saturday:
+                  </p>
+                  <p className="uppercase tracking-wider">
+                    11:00 AM - 11:00 PM
+                  </p>
                 </div>
               </div>
             </div>
@@ -235,19 +277,27 @@ export default function ContactContent() {
 
         {/* Parking info */}
         <div className="flex justify-between items-baseline pt-6 pb-3">
-          <span className="text-base text-foreground uppercase tracking-wider">Parking:</span>
-          <span className="text-base text-foreground uppercase tracking-wider">1216 6th Ave. Fort Worth, TX</span>
+          <span className="text-base text-foreground uppercase tracking-wider">
+            Parking:
+          </span>
+          <span className="text-base text-foreground uppercase tracking-wider">
+            1216 6th Ave. Fort Worth, TX
+          </span>
         </div>
 
         {/* Parking legend tabs */}
         <div className="grid grid-cols-2 gap-4 pb-10">
           <div className="flex items-center gap-2 border-b-2 border-accent pb-3">
             <span className="w-2.5 h-2.5 rounded-full bg-accent" />
-            <span className="text-base text-foreground uppercase tracking-wider">Customer</span>
+            <span className="text-base text-foreground uppercase tracking-wider">
+              Customer
+            </span>
           </div>
           <div className="flex items-center gap-2 border-b-2 border-green-500 pb-3">
             <span className="w-2.5 h-2.5 rounded-full bg-green-500" />
-            <span className="text-base text-foreground uppercase tracking-wider">After Hours</span>
+            <span className="text-base text-foreground uppercase tracking-wider">
+              After Hours
+            </span>
           </div>
         </div>
 
@@ -260,11 +310,13 @@ export default function ContactContent() {
               rel="noopener noreferrer"
               className="underline decoration-accent underline-offset-4 hover:text-foreground transition-colors"
             >
-              Check out more at the<br />PS1200 campus.
+              Check out more at the
+              <br />
+              PS1200 campus.
             </Link>
           </p>
         </div>
       </motion.div>
     </>
-  )
+  );
 }

@@ -34,6 +34,26 @@ main img:not([src*=".svg"]) {
   border: 3px solid var(--color-accent);
 }
 
+/* Typographic orphan/widow prevention */
+@layer base {
+  /* Headings: balanced line lengths */
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+
+  /* Body copy: prevent orphan words on last line */
+  p, li, blockquote, figcaption, dd, dt, label, caption {
+    text-wrap: pretty;
+  }
+
+  /* Fallback for browsers without text-wrap support: */
+  /* overflow-wrap ensures long words still break safely */
+  h1, h2, h3, h4, h5, h6,
+  p, li, blockquote, figcaption {
+    overflow-wrap: break-word;
+  }
+}
+
 /* Accessibility: minimum touch targets */
 @layer utilities {
   .touch-target {

@@ -59,7 +59,7 @@ export default function HomeAboutSection({
       <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
           {/* Image */}
-          <motion.div variants={fadeInUp} className="relative aspect-[2/3] md:aspect-[3/4] overflow-hidden">
+          <motion.div variants={fadeInUp} className="relative aspect-square md:aspect-[3/4] overflow-hidden mx-14 sm:mx-20 md:mx-0">
             {image ? (
               <SanityImage
                 image={image}
