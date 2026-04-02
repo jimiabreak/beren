@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { sanityFetch } from '@/sanity/lib/live'
-import { SITE_SETTINGS_QUERY, HEADER_QUERY, FOOTER_QUERY } from '@/sanity/lib/queries'
+import { SITE_SETTINGS_QUERY, HEADER_QUERY, FOOTER_QUERY, CONTACT_PAGE_QUERY } from '@/sanity/lib/queries'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import JsonLd from '@/components/seo/JsonLd'
@@ -21,17 +21,18 @@ export const metadata: Metadata = {
 }
 
 export default async function ContactPage() {
-  const [{ data: settings }, { data: headerData }, { data: footerData }] = await Promise.all([
+  const [{ data: settings }, { data: headerData }, { data: footerData }, { data: pageData }] = await Promise.all([
     sanityFetch({ query: SITE_SETTINGS_QUERY, tags: ['siteSettings'] }),
     sanityFetch({ query: HEADER_QUERY, tags: ['header'] }),
     sanityFetch({ query: FOOTER_QUERY, tags: ['footer'] }),
+    sanityFetch({ query: CONTACT_PAGE_QUERY, tags: ['contactPage'] }),
   ])
 
   return (
     <>
       <Header siteSettings={settings} cta={headerData?.cta} />
       <main id="main">
-        <ContactContent />
+        <ContactContent pageData={pageData} />
       </main>
       <Footer siteSettings={settings} footerData={footerData} />
       <JsonLd data={webPageJsonLd('Get In Touch', 'Contact BEREN Meze & Grill House in Fort Worth, Texas.', '/contact')} />

@@ -17,7 +17,14 @@ const GRID_IMAGES = [
   { src: '/images/our-story/Beren-01 2.jpg', alt: 'Beet yogurt dip' },
 ]
 
-export default function OurStoryContent() {
+interface OurStoryPageData {
+  heading?: string | null
+  subheading?: string | null
+  bodyParagraph1?: string | null
+  bodyParagraph2?: string | null
+}
+
+export default function OurStoryContent({ pageData }: { pageData?: OurStoryPageData | null }) {
   return (
     <>
       {/* Page heading */}
@@ -28,7 +35,7 @@ export default function OurStoryContent() {
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-16 md:pt-28 pb-12 md:pb-16 text-center"
       >
         <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-wide text-foreground uppercase">
-          Our Story
+          {pageData?.heading || 'Our Story'}
         </h1>
       </motion.div>
 
@@ -43,7 +50,7 @@ export default function OurStoryContent() {
           {/* Left column */}
           <motion.div variants={fadeInUp} className="max-w-sm">
             <h2 className="text-lg md:text-xl text-foreground uppercase tracking-wide mb-6">
-              A Taste of Tradition, Authentic Turkish Cuisine at Beren
+              {pageData?.subheading || 'A Taste of Tradition, Authentic Turkish Cuisine at Beren'}
             </h2>
             <p className="text-base text-muted-foreground leading-relaxed">
               Learn more about our{' '}
@@ -65,10 +72,10 @@ export default function OurStoryContent() {
           {/* Right column */}
           <motion.div variants={fadeInUp} className="text-base text-muted-foreground leading-relaxed space-y-6">
             <p>
-              BEREN Meze & Grill House was born from a deep love for Turkish cuisine and a desire to share its rich cultural heritage with our Texas community. What started as a dream, has blossomed into a cherished dining experience where tradition meets taste.
+              {pageData?.bodyParagraph1 || 'BEREN Meze & Grill House was born from a deep love for Turkish cuisine and a desire to share its rich cultural heritage with our Texas community. What started as a dream, has blossomed into a cherished dining experience where tradition meets taste.'}
             </p>
             <p>
-              At BEREN, we take pride in crafting every dish with the finest local ingredients, time-honored recipes, and a touch of contemporary flair. Each plate we serve tells a story of family, flavor, and the warmth of Turkish hospitality. More than just a meal, dining with us is an experience that celebrates the essence of Mediterranean living.
+              {pageData?.bodyParagraph2 || 'At BEREN, we take pride in crafting every dish with the finest local ingredients, time-honored recipes, and a touch of contemporary flair. Each plate we serve tells a story of family, flavor, and the warmth of Turkish hospitality. More than just a meal, dining with us is an experience that celebrates the essence of Mediterranean living.'}
             </p>
           </motion.div>
         </div>

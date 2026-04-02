@@ -29,6 +29,9 @@ import homePage from './singletons/homePage'
 import header from './singletons/header'
 import footer from './singletons/footer'
 import redirects from './singletons/redirects'
+import ourStoryPage from './singletons/our-story-page'
+import cateringPage from './singletons/catering-page'
+import contactPage from './singletons/contact-page'
 
 // Document types (multiple entries)
 import submission from './documents/submission'
@@ -67,6 +70,9 @@ export const schemaTypes = [
   header,
   footer,
   redirects,
+  ourStoryPage,
+  cateringPage,
+  contactPage,
   // Documents
   submission,
   modularPage,

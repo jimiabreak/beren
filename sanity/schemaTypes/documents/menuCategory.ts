@@ -1,10 +1,11 @@
 import { defineType, defineField } from 'sanity'
+import { MenuIcon } from '@sanity/icons'
 
 export default defineType({
   name: 'menuCategory',
   title: 'Menu Category',
   type: 'document',
-  icon: () => '📋',
+  icon: MenuIcon,
   fields: [
     defineField({
       name: 'title',
@@ -20,10 +21,17 @@ export default defineType({
       options: { source: 'title', maxLength: 50 },
     }),
     defineField({
+      name: 'menuImage',
+      title: 'Menu Image',
+      type: 'image',
+      description: 'Upload an image of the menu for this category (e.g., a photo or exported PDF page)',
+      options: { hotspot: true },
+    }),
+    defineField({
       name: 'pdf',
-      title: 'Menu PDF',
+      title: 'Menu PDF (optional)',
       type: 'file',
-      description: 'Upload the PDF menu for this category',
+      description: 'Optional: upload a PDF version for download',
       options: { accept: '.pdf' },
     }),
     defineField({

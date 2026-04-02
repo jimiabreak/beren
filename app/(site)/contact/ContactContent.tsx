@@ -6,7 +6,23 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 
-export default function ContactContent() {
+interface ContactPageData {
+  heading?: string | null
+  formHeading?: string | null
+  formDescription?: string | null
+  gettingThereHeading?: string | null
+  email?: string | null
+  phone?: string | null
+  website?: string | null
+  addressLine1?: string | null
+  addressLine2?: string | null
+  hoursLine1Label?: string | null
+  hoursLine1Time?: string | null
+  hoursLine2Label?: string | null
+  hoursLine2Time?: string | null
+}
+
+export default function ContactContent({ pageData }: { pageData?: ContactPageData | null }) {
   const [formState, setFormState] = useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
@@ -81,7 +97,7 @@ export default function ContactContent() {
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-16 md:pt-28 pb-12 md:pb-16 text-center"
       >
         <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-wide text-foreground uppercase text-balance">
-          Get In Touch
+          {pageData?.heading || 'Get In Touch'}
         </h1>
       </motion.div>
 
@@ -94,10 +110,10 @@ export default function ContactContent() {
       >
         <motion.div variants={fadeInUp}>
           <h2 className="text-base text-foreground uppercase tracking-wider mb-6">
-            Send Us a Message
+            {pageData?.formHeading || 'Send Us a Message'}
           </h2>
           <p className="text-base text-muted-foreground leading-relaxed max-w-lg text-pretty">
-            For general inquiries please fill out the form below.
+            {pageData?.formDescription || 'For general inquiries please fill out the form below.'}
           </p>
         </motion.div>
       </motion.div>
@@ -212,46 +228,46 @@ export default function ContactContent() {
             <div className="mt-12 space-y-1.5 text-base text-muted-foreground">
               <p>
                 <a
-                  href="https://berentexas.com"
+                  href={`https://${pageData?.website || 'berentexas.com'}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-foreground transition-colors uppercase tracking-wider"
                 >
-                  berentexas.com
+                  {pageData?.website || 'berentexas.com'}
                 </a>
               </p>
               <p>
                 <a
-                  href="mailto:info@berentexas.com"
+                  href={`mailto:${pageData?.email || 'info@berentexas.com'}`}
                   className="hover:text-foreground transition-colors uppercase tracking-wider"
                 >
-                  info@berentexas.com
+                  {pageData?.email || 'info@berentexas.com'}
                 </a>
               </p>
               <p>
                 <a
-                  href="tel:+16822467501"
+                  href={`tel:${(pageData?.phone || '(682) 246 7501').replace(/[^\d+]/g, '')}`}
                   className="hover:text-foreground transition-colors uppercase tracking-wider"
                 >
-                  (682) 246 7501
+                  {pageData?.phone || '(682) 246 7501'}
                 </a>
               </p>
               <div className="pt-6 space-y-1.5">
-                <p className="uppercase tracking-wider">1216 6th Ave.</p>
-                <p className="uppercase tracking-wider">Fort Worth, TX</p>
+                <p className="uppercase tracking-wider">{pageData?.addressLine1 || '1216 6th Ave.'}</p>
+                <p className="uppercase tracking-wider">{pageData?.addressLine2 || 'Fort Worth, TX'}</p>
               </div>
               <div className="pt-6 space-y-1.5">
                 <p className="uppercase tracking-wider">Hours:</p>
                 <p className="uppercase tracking-wider">
-                  Monday-Thursday &amp; Sunday:
+                  {pageData?.hoursLine1Label || 'Monday-Thursday & Sunday:'}
                 </p>
-                <p className="uppercase tracking-wider">11:00 AM - 10:00 PM</p>
+                <p className="uppercase tracking-wider">{pageData?.hoursLine1Time || '11:00 AM - 10:00 PM'}</p>
                 <div className="pt-3">
                   <p className="uppercase tracking-wider">
-                    Friday &amp; Saturday:
+                    {pageData?.hoursLine2Label || 'Friday & Saturday:'}
                   </p>
                   <p className="uppercase tracking-wider">
-                    11:00 AM - 11:00 PM
+                    {pageData?.hoursLine2Time || '11:00 AM - 11:00 PM'}
                   </p>
                 </div>
               </div>
@@ -268,7 +284,7 @@ export default function ContactContent() {
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-8 pb-12 text-center"
       >
         <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-wide text-foreground uppercase text-balance">
-          Getting There
+          {pageData?.gettingThereHeading || 'Getting There'}
         </h2>
       </motion.div>
 
@@ -295,7 +311,7 @@ export default function ContactContent() {
             Parking:
           </span>
           <span className="text-base text-foreground uppercase tracking-wider">
-            1216 6th Ave. Fort Worth, TX
+            {`${pageData?.addressLine1 || '1216 6th Ave.'} ${pageData?.addressLine2 || 'Fort Worth, TX'}`}
           </span>
         </div>
 

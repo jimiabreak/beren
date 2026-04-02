@@ -151,6 +151,47 @@ export const SITEMAP_QUERY = defineQuery(`
   }
 `)
 
+// ─── Our Story Page ─────────────────────────────────────────────
+export const OUR_STORY_PAGE_QUERY = defineQuery(`
+  *[_type == "ourStoryPage"][0] {
+    heading,
+    subheading,
+    bodyParagraph1,
+    bodyParagraph2
+  }
+`)
+
+// ─── Catering Page ──────────────────────────────────────────────
+export const CATERING_PAGE_QUERY = defineQuery(`
+  *[_type == "cateringPage"][0] {
+    heading,
+    subheading,
+    ctaButtonText,
+    bodyParagraph1,
+    bodyParagraph2,
+    bodyParagraph3
+  }
+`)
+
+// ─── Contact Page ───────────────────────────────────────────────
+export const CONTACT_PAGE_QUERY = defineQuery(`
+  *[_type == "contactPage"][0] {
+    heading,
+    formHeading,
+    formDescription,
+    gettingThereHeading,
+    email,
+    phone,
+    website,
+    addressLine1,
+    addressLine2,
+    hoursLine1Label,
+    hoursLine1Time,
+    hoursLine2Label,
+    hoursLine2Time
+  }
+`)
+
 // ─── Promo Banner ────────────────────────────────────────────────
 export const PROMO_BANNER_QUERY = defineQuery(`
   *[_type == "promoBanner" && isActive == true && (

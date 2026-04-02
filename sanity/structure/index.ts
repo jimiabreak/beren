@@ -5,11 +5,19 @@ import {
   CogIcon,
   MenuIcon,
   BlockContentIcon,
-  LinkIcon,
-  BellIcon,
+  DocumentTextIcon,
 } from '@sanity/icons'
 
-export const SINGLETONS = ['siteSettings', 'homePage', 'header', 'footer', 'redirects']
+export const SINGLETONS = [
+  'siteSettings',
+  'homePage',
+  'header',
+  'footer',
+  'redirects',
+  'ourStoryPage',
+  'cateringPage',
+  'contactPage',
+]
 
 export const structure = (S: StructureBuilder) =>
   S.list()
@@ -22,13 +30,24 @@ export const structure = (S: StructureBuilder) =>
 
       S.divider(),
 
+      S.listItem()
+        .title('Our Story')
+        .icon(DocumentTextIcon)
+        .child(S.document().schemaType('ourStoryPage').documentId('ourStoryPage')),
+      S.listItem()
+        .title('Catering')
+        .icon(DocumentTextIcon)
+        .child(S.document().schemaType('cateringPage').documentId('cateringPage')),
+      S.listItem()
+        .title('Get In Touch')
+        .icon(EnvelopeIcon)
+        .child(S.document().schemaType('contactPage').documentId('contactPage')),
+
       S.documentTypeListItem('menuCategory').title('Menu'),
 
       S.divider(),
 
       S.documentTypeListItem('submission').title('Submissions').icon(EnvelopeIcon),
-      S.documentTypeListItem('promoBanner').title('Promo Banners').icon(BellIcon),
-      S.documentTypeListItem('redirect').title('Redirects').icon(LinkIcon),
 
       S.divider(),
 
@@ -51,10 +70,6 @@ export const structure = (S: StructureBuilder) =>
                 .title('Footer')
                 .icon(BlockContentIcon)
                 .child(S.document().schemaType('footer').documentId('footer')),
-              S.listItem()
-                .title('Redirects')
-                .icon(LinkIcon)
-                .child(S.document().schemaType('redirects').documentId('redirects')),
             ])
         ),
     ])

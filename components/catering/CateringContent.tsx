@@ -5,7 +5,16 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { fadeInUp, fadeIn, staggerContainer } from '@/lib/animations'
 
-export default function CateringContent() {
+interface CateringPageData {
+  heading?: string | null
+  subheading?: string | null
+  ctaButtonText?: string | null
+  bodyParagraph1?: string | null
+  bodyParagraph2?: string | null
+  bodyParagraph3?: string | null
+}
+
+export default function CateringContent({ pageData }: { pageData?: CateringPageData | null }) {
   return (
     <>
       {/* Page heading */}
@@ -16,7 +25,7 @@ export default function CateringContent() {
         className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-16 md:pt-28 pb-12 md:pb-16 text-center"
       >
         <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-wide text-foreground uppercase">
-          Catering
+          {pageData?.heading || 'Catering'}
         </h1>
       </motion.div>
 
@@ -31,26 +40,26 @@ export default function CateringContent() {
           {/* Left column */}
           <motion.div variants={fadeInUp} className="max-w-md">
             <h2 className="text-lg md:text-xl text-foreground uppercase tracking-wide mb-6">
-              Unique Catering Experiences for Weddings, Private Gatherings, Engagement Celebrations, &amp; Cultural Occasions.
+              {pageData?.subheading || 'Unique Catering Experiences for Weddings, Private Gatherings, Engagement Celebrations, & Cultural Occasions.'}
             </h2>
             <Link
               href="/contact"
               className="inline-block border border-accent text-foreground uppercase tracking-widest text-sm px-8 py-3.5 hover:bg-accent hover:text-background transition-colors"
             >
-              Request a Quote
+              {pageData?.ctaButtonText || 'Request a Quote'}
             </Link>
           </motion.div>
 
           {/* Right column */}
           <motion.div variants={fadeInUp} className="text-base text-muted-foreground leading-relaxed space-y-6">
             <p>
-              At BEREN, our catering brings the warmth and richness of Turkish cuisine to life&apos;s most meaningful moments. From weddings and engagement celebrations to private gatherings and cultural occasions.
+              {pageData?.bodyParagraph1 || "At BEREN, our catering brings the warmth and richness of Turkish cuisine to life's most meaningful moments. From weddings and engagement celebrations to private gatherings and cultural occasions."}
             </p>
             <p>
-              Our menus showcase the depth of Anatolian cooking, featuring vibrant meze spreads, iconic street foods, slow-cooked mains, sizzling grills, and traditional desserts prepared with care and authenticity.
+              {pageData?.bodyParagraph2 || 'Our menus showcase the depth of Anatolian cooking, featuring vibrant meze spreads, iconic street foods, slow-cooked mains, sizzling grills, and traditional desserts prepared with care and authenticity.'}
             </p>
             <p>
-              Whether you&apos;re hosting an intimate dinner or a large celebration, we curate each menu to create a welcoming table that reflects the beauty of Turkish hospitality and brings people together through food, tradition, and shared experience.
+              {pageData?.bodyParagraph3 || "Whether you're hosting an intimate dinner or a large celebration, we curate each menu to create a welcoming table that reflects the beauty of Turkish hospitality and brings people together through food, tradition, and shared experience."}
             </p>
           </motion.div>
         </div>
