@@ -1,32 +1,32 @@
-'use client'
+"use client";
 
-import Image from 'next/image'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { fadeIn } from '@/lib/animations'
-import NewsletterSignup from '@/components/ui/NewsletterSignup'
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { fadeIn } from "@/lib/animations";
+import NewsletterSignup from "@/components/ui/NewsletterSignup";
 
 interface FooterProps {
   siteSettings?: {
-    name?: string
-    phone?: string
-    email?: string
+    name?: string;
+    phone?: string;
+    email?: string;
     address?: {
-      street?: string
-      city?: string
-      state?: string
-      zip?: string
-    }
-    socialLinks?: Array<{ _key?: string; platform: string; url: string }>
-  }
+      street?: string;
+      city?: string;
+      state?: string;
+      zip?: string;
+    };
+    socialLinks?: Array<{ _key?: string; platform: string; url: string }>;
+  };
   footerData?: {
-    tagline?: string
-    copyrightText?: string
-  }
+    tagline?: string;
+    copyrightText?: string;
+  };
 }
 
 export default function Footer({ siteSettings }: FooterProps) {
-  const address = siteSettings?.address
+  const address = siteSettings?.address;
 
   return (
     <footer className="bg-background text-foreground">
@@ -97,7 +97,7 @@ export default function Footer({ siteSettings }: FooterProps) {
                   />
                 </a>
                 <a
-                  href="https://www.instagram.com/berenmezegrillhouse"
+                  href="https://www.instagram.com/berentexas"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -138,24 +138,28 @@ export default function Footer({ siteSettings }: FooterProps) {
           {/* Address */}
           <p className="text-xs text-muted-foreground uppercase tracking-wider">
             {address
-              ? `${address.street?.replace(/\.$/, '')}. ${address.city}, ${address.state}`
-              : '1216 6th Ave. Fort Worth, TX'}
+              ? `${address.street?.replace(/\.$/, "")}. ${address.city}, ${address.state}`
+              : "1216 6th Ave. Fort Worth, TX"}
           </p>
 
           {/* Nav links + copyright */}
           <nav className="flex items-center gap-4 text-xs text-muted-foreground uppercase tracking-wider">
-            <Link href="/catering" className="hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+            <Link
+              href="/catering"
+              className="hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            >
               Catering
             </Link>
-            <Link href="/contact" className="hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+            <Link
+              href="/contact"
+              className="hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            >
               Contact
             </Link>
-            <span>
-              &copy; BEREN {new Date().getFullYear()}
-            </span>
+            <span>&copy; BEREN {new Date().getFullYear()}</span>
           </nav>
         </div>
       </div>
     </footer>
-  )
+  );
 }
