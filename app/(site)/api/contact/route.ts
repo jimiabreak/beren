@@ -1,6 +1,15 @@
 import { NextResponse } from 'next/server'
+import { createClient } from 'next-sanity'
+import { apiVersion, dataset, projectId } from '@/sanity/env'
 
-const WEB3FORMS_KEY = process.env.WEB3FORMS_ACCESS_KEY || 'e15c0631-2d68-4692-95f7-1b0cd0bda82c'
+const writeClient = createClient({
+  projectId,
+  dataset,
+  apiVersion,
+  token: process.env.SANITY_API_WRITE_TOKEN,
+  useCdn: false,
+})
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export async function POST(request: Request) {
@@ -24,29 +33,21 @@ export async function POST(request: Request) {
       )
     }
 
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        access_key: WEB3FORMS_KEY,
-        subject: `BEREN Contact: ${name}`,
-        from_name: 'BEREN Website',
-        name,
-        email,
-        message,
-        replyto: email,
-      }),
+    await writeClient.create({
+      _type: 'submission',
+      name,
+      email,
+      message,
+      source: 'contact',
+      page: '/contact',
+      submittedAt: new Date().toISOString(),
     })
-
-    if (!res.ok) {
-      throw new Error(`Web3Forms error: ${res.status}`)
-    }
 
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Contact form error:', error)
     return NextResponse.json(
-      { error: 'Failed to send message' },
+      { error: 'Failed to save submission' },
       { status: 500 }
     )
   }

@@ -26,22 +26,36 @@ export default function ContactContent() {
 
     setFormState("submitting");
     const formData = new FormData(form);
+    const payload = {
+      name: (formData.get("name") as string)?.trim(),
+      email: (formData.get("email") as string)?.trim(),
+      message: (formData.get("message") as string)?.trim(),
+    };
 
     try {
-      const res = await fetch("/api/contact", {
+      // Submit to Web3Forms directly from browser (required by their free plan)
+      const web3Res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: (formData.get("name") as string)?.trim(),
-          email: (formData.get("email") as string)?.trim(),
-          message: (formData.get("message") as string)?.trim(),
+          access_key: "e15c0631-2d68-4692-95f7-1b0cd0bda82c",
+          subject: `BEREN Contact: ${payload.name}`,
+          from_name: "BEREN Website",
+          ...payload,
+          replyto: payload.email,
         }),
       });
 
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || "Something went wrong");
+      if (!web3Res.ok) {
+        throw new Error("Failed to send message");
       }
+
+      // Also save to Sanity (fire-and-forget, don't block success)
+      fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      }).catch(() => {});
 
       setFormState("success");
       form.reset();
