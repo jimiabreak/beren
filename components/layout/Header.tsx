@@ -20,7 +20,9 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
   const menuButtonRef = useRef<HTMLButtonElement>(null)
 
   const reserveHref = 'https://www.opentable.com/booking/restref/availability?lang=en-US&correlationId=e39a6023-80ca-40e2-89a8-4ddadff82c7e&restRef=1503940&otSource=Restaurant%20website'
+  const orderHref = 'https://zingmyorder.com/restaurants/beren-meze-grill-house-1226-6th-avenue--fort-worth-tx-76104-usa'
   const isExternal = reserveHref.startsWith('http')
+  const isOrderExternal = orderHref.startsWith('http')
 
   const navTaglineL1 = 'Ancestral Mediterranean Cooking'
   const navTaglineL2 = 'Meze & Grill House'
@@ -30,6 +32,7 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
     { href: '/menu', label: 'The Menu' },
     { href: '/catering', label: 'Catering' },
     { href: '/contact', label: 'Contact' },
+    ...(orderHref ? [{ href: orderHref, label: 'Order', isButton: true }] : []),
     ...(reserveHref ? [{ href: reserveHref, label: 'Reserve', isButton: true }] : []),
   ]
 
@@ -91,17 +94,29 @@ export default function Header({ siteSettings, cta }: HeaderProps) {
               </div>
             </Link>
 
-            {/* Right Zone: Reserve CTA */}
-            {reserveHref && (
-              <a
-                href={reserveHref}
-                target={isExternal ? '_blank' : undefined}
-                rel={isExternal ? 'noopener noreferrer' : undefined}
-                className="border-2 border-accent text-muted-foreground px-8 py-3 uppercase tracking-wider text-sm hover:bg-accent hover:text-background transition-[color,background-color,border-color,transform] duration-200 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-              >
-                Reserve
-              </a>
-            )}
+            {/* Right Zone: Order + Reserve CTAs */}
+            <div className="flex items-center gap-3">
+              {orderHref && (
+                <a
+                  href={orderHref}
+                  target={isOrderExternal ? '_blank' : undefined}
+                  rel={isOrderExternal ? 'noopener noreferrer' : undefined}
+                  className="border-2 border-accent text-muted-foreground px-8 py-3 uppercase tracking-wider text-sm hover:bg-accent hover:text-background transition-[color,background-color,border-color,transform] duration-200 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                >
+                  Order
+                </a>
+              )}
+              {reserveHref && (
+                <a
+                  href={reserveHref}
+                  target={isExternal ? '_blank' : undefined}
+                  rel={isExternal ? 'noopener noreferrer' : undefined}
+                  className="border-2 border-accent text-muted-foreground px-8 py-3 uppercase tracking-wider text-sm hover:bg-accent hover:text-background transition-[color,background-color,border-color,transform] duration-200 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                >
+                  Reserve
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>
